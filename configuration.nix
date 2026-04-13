@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./pkgs
+      ./modules/system
     ];
 
   # Use the systemd-boot EFI boot loader.

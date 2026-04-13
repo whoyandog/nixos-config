@@ -44,11 +44,24 @@ let
       --enable-features=UseOzonePlatform \
       "$@"
   '';
+
+  yandexDesktop = pkgs.makeDesktopItem {
+    name = "yandex-browser-corporate";
+    desktopName = "Yandex Browser Corporate";
+    genericName = "Web Browser (Distrobox)";
+    exec = "yandex-browser-corporate %U"; # Вызывает твой скрипт выше
+    icon = "yandex-browser"; # Подтянет иконку, если она есть в системе
+    terminal = false;
+    categories = [ "Network" "WebBrowser" ];
+    mimeTypes = [ "text/html" "text/xml" "application/xhtml+xml" "x-scheme-handler/http" "x-scheme-handler/https" ];
+    startupWMClass = "yandex-browser-corporate";
+  };
 in
 {
   home.packages = with pkgs; [
     distrobox
     dboxBrowserInit
     yandexCorporate
+    yandexDesktop
   ];
 }

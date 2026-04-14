@@ -4,5 +4,12 @@
     neovim
     git
     ouch
+
+    # file manager
+    yazi
+
+    # file systems
+    ntfs3g
+    thunar
   ];
 }

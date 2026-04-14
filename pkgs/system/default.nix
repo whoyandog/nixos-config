@@ -7,9 +7,9 @@
 
     # file manager
     yazi
-
+    thunar
+    
     # file systems
     ntfs3g
-    thunar
   ];
 }

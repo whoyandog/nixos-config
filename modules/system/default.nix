@@ -3,5 +3,6 @@
     ./login
     ./nvidia
     ./steam
+    ./logitech
   ];
 }

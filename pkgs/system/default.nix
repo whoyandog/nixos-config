@@ -11,5 +11,8 @@
     
     # file systems
     ntfs3g
+
+    # audio control
+    pavucontrol
   ];
 }

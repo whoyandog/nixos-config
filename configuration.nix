@@ -41,25 +41,6 @@
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
-
-  # NVIDIA settings 
-  services.xserver.videoDrivers = [ "nvidia" ]; 
-  
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = false;
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
-
-  # NVIDIA + Wayland
-  environment.variables = {
-    NIXOS_OZONE_WL = "1";
-    LIBVA_DRIVER_NAME = "nvidia";
-    GBM_BACKEND = "nvidia-drm";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-  };
   
   # Virtualisation 
   virtualisation.podman.enable = true;
@@ -79,6 +60,14 @@
   #   enable = true;
   #   pulse.enable = true;
   # };
+
+  security.rtkit.enable = true; # Нужно для работы PipeWire с высоким приоритетом
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;

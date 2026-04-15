@@ -1,6 +1,7 @@
 { ... }: {
   imports = [
     ./login
+    ./nvidia
     ./steam
   ];
 }

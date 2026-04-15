@@ -7,6 +7,9 @@
     fuzzel
     wl-clipboard
 
+    # wallpapers
+    swww
+
     # browsers
     qutebrowser
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default

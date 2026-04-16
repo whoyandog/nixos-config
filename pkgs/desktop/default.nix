@@ -13,6 +13,9 @@
     # browsers
     qutebrowser
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+
+    # obsidian
+    obsidian
   ];
 }
 

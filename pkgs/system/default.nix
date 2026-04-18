@@ -14,5 +14,8 @@
 
     # audio control
     pavucontrol
+
+    # AI
+    aider-chat
   ];
 }

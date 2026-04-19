@@ -1,10 +1,11 @@
 { ... }: {
   imports = [
     ./login
+    ./system
     ./nvidia
     ./steam
     ./bypass
-    # ./logitech
+    ./logitech
   ];
 
   programs.niri.enable = true;

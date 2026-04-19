@@ -5,6 +5,8 @@
     git
     ouch
 
+    usbutils
+
     # file manager
     yazi
     thunar
@@ -14,6 +16,8 @@
 
     # audio control
     pavucontrol
+    pulseaudio
+    easyeffects
 
     # steam/graphics runtime tools
     xwayland-satellite
@@ -26,6 +30,7 @@
 
     # peripherals
     solaar
+    headsetcontrol
 
     # AI
     aider-chat

@@ -1,14 +1,12 @@
 { pkgs, inputs, ...}: 
 {
-  programs.niri.enable = true;
-
   environment.systemPackages = with pkgs; [
     kitty
     fuzzel
     wl-clipboard
 
     # wallpapers
-    swww
+    awww
 
     # browsers
     qutebrowser

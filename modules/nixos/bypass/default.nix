@@ -1,9 +1,4 @@
-{ config, pkgs, ... } : {
-
-    environment.systemPackages = with pkgs; [
-        sing-box
-        proxychains-ng  # Добавляем сюда
-    ];
+{ pkgs, ... } : {
 
     services.sing-box = {
         enable = true;

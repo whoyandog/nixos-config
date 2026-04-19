@@ -15,6 +15,18 @@
     # audio control
     pavucontrol
 
+    # steam/graphics runtime tools
+    xwayland-satellite
+    vulkan-loader
+    vulkan-tools
+
+    # bypass/proxy stack
+    sing-box
+    proxychains-ng
+
+    # peripherals
+    solaar
+
     # AI
     aider-chat
   ];

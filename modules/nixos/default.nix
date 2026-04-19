@@ -6,4 +6,6 @@
     ./bypass
     # ./logitech
   ];
+
+  programs.niri.enable = true;
 }

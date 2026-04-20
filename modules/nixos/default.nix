@@ -2,6 +2,7 @@
   imports = [
     ./login
     ./system
+    ./stylix
     ./nvidia
     ./steam
     ./bypass

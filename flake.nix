@@ -8,6 +8,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -15,17 +20,18 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ...}@inputs: { 
+  outputs = { self, nixpkgs, home-manager, ...}@inputs: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [ 
         ./hosts/nixos/default.nix 
+        inputs.stylix.nixosModules.stylix
         home-manager.nixosModules.home-manager 
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-	        home-manager.backupFileExtension = "backup";
+          home-manager.backupFileExtension = "backup";
           home-manager.users.dmitry = import ./home/dmitry.nix;
         }
       ];

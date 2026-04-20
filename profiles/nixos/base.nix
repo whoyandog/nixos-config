@@ -7,6 +7,9 @@
 
     usbutils
 
+    # vnc wayland client
+    wlvncc
+
     # file manager
     yazi
     thunar

@@ -14,12 +14,12 @@
 		};
 	};
 
-	qt = {
-		enable = true;
-	};
+	# qt = {
+	# 	 enable = true;
+	# };
 
-	home.sessionVariables = {
-		QT_QPA_PLATFORM = "wayland;xcb";
-	};
+	# home.sessionVariables = {
+		# QT_QPA_PLATFORM = "wayland;xcb";
+	# };
 }
 

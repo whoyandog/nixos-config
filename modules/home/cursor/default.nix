@@ -1,4 +1,4 @@
-yy{ pkgs, ... }:
+{ pkgs, ... }:
 {
   home.pointerCursor = {
     package = pkgs.bibata-cursors;

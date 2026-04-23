@@ -7,6 +7,9 @@
 
     usbutils
 
+    # system utils
+    screenfetch
+
     # vnc wayland client
     wlvncc
 

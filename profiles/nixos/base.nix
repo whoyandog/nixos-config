@@ -7,6 +7,9 @@
 
     usbutils
 
+    # internet utils
+    bind 
+
     # system utils
     screenfetch
 

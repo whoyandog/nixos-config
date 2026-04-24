@@ -1,6 +1,7 @@
 { ... }: {
   imports = [ 
     ./cursor
+    ./kitty
     ./niri
     ./git
     ./waybar

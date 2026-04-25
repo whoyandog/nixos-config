@@ -3,6 +3,9 @@ result-*
 
 .direnv/
 
+# Rust artifacts
+**/target/
+
 *.swp
 *~
 .aider*

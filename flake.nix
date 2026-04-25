@@ -29,6 +29,12 @@
         inputs.stylix.nixosModules.stylix
         home-manager.nixosModules.home-manager 
         {
+          nixpkgs.overlays = [
+            (final: prev: {
+              mpris-mqtt-adapter = final.callPackage ./pkgs/mpris-mqtt-adapter { };
+            })
+          ];
+
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.backupFileExtension = "backup";

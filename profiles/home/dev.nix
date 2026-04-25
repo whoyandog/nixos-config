@@ -7,5 +7,11 @@ in
 {
   home.packages = [
     code
+    pkgs.gcc
+    pkgs.rustc
+    pkgs.cargo
+    pkgs.clippy
+    pkgs.rustfmt
+    pkgs.rust-analyzer
   ];
 }

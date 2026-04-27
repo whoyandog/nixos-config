@@ -272,17 +272,9 @@ layout {
 // See the binds section below for more spawn examples.
 
 // Spawn wallpapers
-spawn-at-startup "awww-daemon"
 spawn-at-startup "awww" "img" "/home/dmitry/Pictures/wallpaper.jpg" "--transition-fps" "75"
 
-// Spawn xwayland
-spawn-at-startup "xwayland-satellite"
-
-// This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "waybar"
-
-// Start Solaar hidden so Logitech settings are applied automatically.
-spawn-at-startup "solaar" "-w" "hide"
+// Spawn xwayland, waybar and solaar via systemd --user services.
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"

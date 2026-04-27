@@ -8,6 +8,13 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./networking
+      ./time.nix
+      ./locale.nix
+      ./virtualization.nix
+      ./audio
+      ./users
+      ./nix-settings.nix
       ../../profiles/nixos
       ../../modules/nixos
     ];
@@ -21,29 +28,9 @@
 
   # networking.hostName = "nixos"; # Define your hostname.
 
-  # Configure network connections interactively with nmcli or nmtui.
-  networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "Asia/Yekaterinburg";
-
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "ru_RU.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "ru_RU.UTF-8";
-    LC_IDENTIFICATION = "ru_RU.UTF-8";
-    LC_MEASUREMENT = "ru_RU.UTF-8";
-    LC_MONETARY = "ru_RU.UTF-8";
-    LC_NAME = "ru_RU.UTF-8";
-    LC_NUMERIC = "ru_RU.UTF-8";
-    LC_PAPER = "ru_RU.UTF-8";
-    LC_TELEPHONE = "ru_RU.UTF-8";
-    LC_TIME = "ru_RU.UTF-8";
-  };
 
   # console = {
   #   font = "Lat2-Terminus16";
@@ -54,10 +41,6 @@
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
   
-  # Virtualisation 
-  virtualisation.podman.enable = true;
-  virtualisation.podman.dockerCompat = true;
-
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
@@ -73,14 +56,6 @@
   #   pulse.enable = true;
   # };
 
-  security.rtkit.enable = true; # Нужно для работы PipeWire с высоким приоритетом
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
 
@@ -92,11 +67,6 @@
   #     tree
   #   ];
   # };
-  users.users.dmitry = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
-  };
-
   # programs.firefox.enable = true;
 
   # List packages installed in system profile.
@@ -148,13 +118,6 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   
-  # Allow proprietar (NVIDIA drivers)
-  nixpkgs.config.allowUnfree = true;
-  
-  # Experimental settings
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];  
-
-
   system.stateVersion = "25.11"; # Did you read the comment?
 
 }

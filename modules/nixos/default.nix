@@ -5,7 +5,7 @@
     ./stylix
     ./nvidia
     ./steam
-    ./bypass
+    ./networking
     ./logitech
   ];
 

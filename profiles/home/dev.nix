@@ -1,7 +1,7 @@
 { pkgs, ... }:
 let
   code = pkgs.writeShellScriptBin "code" ''
-    exec "${pkgs.vscode}/bin/code" --password-store=gnome-libsecret "$@"
+    exec "/run/current-system/sw/bin/code" --password-store=gnome-libsecret "$@"
   '';
 in
 {

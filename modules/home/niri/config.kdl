@@ -333,18 +333,6 @@ window-rule {
     open-floating true
 }
 
-// Example: block out two password managers from screen capture.
-// (This example rule is commented out with a "/-" in front.)
-/-window-rule {
-    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
-    match app-id=r#"^org\.gnome\.World\.Secrets$"#
-
-    block-out-from "screen-capture"
-
-    // Use this instead if you want them visible on third-party screenshot tools.
-    // block-out-from "screencast"
-}
-
 // Enable rounded corners for all windows.
 window-rule {
     geometry-corner-radius 12
@@ -365,6 +353,27 @@ window-rule {
 window-rule {
     // match is-active=true
     // opacity 0.9
+}
+
+window-rule {
+    // Bodycam (Steam AppID 2406770): open directly in fullscreen.
+    match title="[Bb]odycam"
+    match app-id="steam_app_2406770"
+
+    open-floating false
+    open-fullscreen true
+}
+
+// Example: block out two password managers from screen capture.
+// (This example rule is commented out with a "/-" in front.)
+/-window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    match app-id=r#"^org\.gnome\.World\.Secrets$"#
+
+    block-out-from "screen-capture"
+
+    // Use this instead if you want them visible on third-party screenshot tools.
+    // block-out-from "screencast"
 }
 
 binds {

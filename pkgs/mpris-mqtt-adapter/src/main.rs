@@ -3,7 +3,7 @@ use std::time::Duration;
 
 use anyhow::{Context, Result};
 use clap::Parser;
-use rumqttc::{AsyncClient, Event, Incoming, MqttOptions, QoS};
+use rumqttc::{AsyncClient, Event, Incoming, LastWill, MqttOptions, QoS};
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 
@@ -53,6 +53,14 @@ async fn main() -> Result<()> {
     let mut opts = MqttOptions::new("mpris-mqtt-adapter", cli.host.clone(), cli.port);
     opts.set_keep_alive(Duration::from_secs(10));
 
+    let availability_topic = format!("{}/availability", cli.topic);
+    opts.set_last_will(LastWill::new(
+        availability_topic.clone(),
+        "offline",
+        QoS::AtLeastOnce,
+        true,
+    ));
+
     if let (Ok(username), Ok(password)) = (
         std::env::var("MQTT_USERNAME"),
         std::env::var("MQTT_PASSWORD"),
@@ -65,6 +73,17 @@ async fn main() -> Result<()> {
     let event_topic = format!("{}/event", cli.topic);
 
     let (client, mut eventloop) = AsyncClient::new(opts, 50);
+
+    client
+        .publish(
+            availability_topic.clone(),
+            QoS::AtLeastOnce,
+            true,
+            "online",
+        )
+        .await
+        .context("failed to publish availability online status")?;
+
     client
         .subscribe(cmd_topic.clone(), QoS::AtLeastOnce)
         .await

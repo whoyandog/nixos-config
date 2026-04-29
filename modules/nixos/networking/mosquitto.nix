@@ -1,0 +1,5 @@
+{ ... } : {
+    services.mosquitto = {
+        enable = true;
+    };
+}

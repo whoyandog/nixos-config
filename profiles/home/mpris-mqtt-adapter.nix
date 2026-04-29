@@ -3,7 +3,7 @@ let
   mqttHost = "mqtt.home.arpa";
 in
 {
-  services.mprisMqttBridge = {
+  services.mprisMqttAdapter = {
     enable = true;
     package = pkgs.mpris-mqtt-adapter;
     extraArgs = [

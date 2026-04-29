@@ -5,7 +5,7 @@
     ./niri
     ./git
     ./waybar
-    ./mpris-mqtt-bridge
+    ./mpris-mqtt-adapter
     
     ./dbox-browser.nix
   ];

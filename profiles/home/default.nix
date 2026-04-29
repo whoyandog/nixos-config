@@ -2,7 +2,7 @@
 {
   imports = [
     ./base.nix
-    ./mpris-mqtt-bridge.nix
+    ./mpris-mqtt-adapter.nix
     ./dev.nix
   ];
 }

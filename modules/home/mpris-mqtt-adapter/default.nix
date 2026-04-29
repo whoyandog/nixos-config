@@ -1,10 +1,14 @@
 { lib, config, ... }:
 let
-  cfg = config.services.mprisMqttBridge;
+  cfg = config.services.mprisMqttAdapter;
 in
 {
-  options.services.mprisMqttBridge = {
-    enable = lib.mkEnableOption "MPRIS to MQTT bridge user service";
+  imports = [
+    (lib.mkAliasOptionModule [ "services" "mprisMqttBridge" ] [ "services" "mprisMqttAdapter" ])
+  ];
+
+  options.services.mprisMqttAdapter = {
+    enable = lib.mkEnableOption "MPRIS to MQTT adapter user service";
 
     package = lib.mkOption {
       type = lib.types.nullOr lib.types.package;
@@ -39,7 +43,7 @@ in
 
   config = lib.mkIf cfg.enable (
     let
-      bridgeCmd =
+      adapterCmd =
         if cfg.package != null then
           lib.getExe cfg.package
         else
@@ -48,16 +52,16 @@ in
     {
       assertions = [
         {
-          assertion = bridgeCmd != null;
-          message = "services.mprisMqttBridge: set package or executable when enable = true.";
+          assertion = adapterCmd != null;
+          message = "services.mprisMqttAdapter: set package or executable when enable = true.";
         }
       ];
 
       home.packages = lib.optional (cfg.package != null) cfg.package;
 
-      systemd.user.services.mpris-mqtt-bridge = {
+      systemd.user.services.mpris-mqtt-adapter = {
         Unit = {
-          Description = "MPRIS to MQTT bridge";
+          Description = "MPRIS to MQTT adapter";
           After = [ "graphical-session.target" "network-online.target" ];
           Wants = [ "network-online.target" ];
           PartOf = [ "graphical-session.target" ];
@@ -66,7 +70,7 @@ in
         Service =
           {
             Type = "simple";
-            ExecStart = lib.escapeShellArgs ([ bridgeCmd ] ++ cfg.extraArgs);
+            ExecStart = lib.escapeShellArgs ([ adapterCmd ] ++ cfg.extraArgs);
             Restart = "on-failure";
             RestartSec = 3;
           }
@@ -76,6 +80,7 @@ in
 
         Install = {
           WantedBy = cfg.wantedBy;
+          Alias = [ "mpris-mqtt-bridge.service" ];
         };
       };
     }

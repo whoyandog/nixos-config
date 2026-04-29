@@ -37,6 +37,9 @@ struct PlayerState {
     title: String,
     album: String,
     volume: String,
+    position_seconds: String,
+    loop_status: String,
+    shuffle: String,
     player: String,
 }
 
@@ -236,12 +239,12 @@ async fn publish_discovery(client: &AsyncClient, base_topic: &str, state_topic: 
             }),
         ),
         (
-            "homeassistant/button/workstation_media_like/config",
+            "homeassistant/button/workstation_media_stop/config",
             serde_json::json!({
-                "name": "Workstation Media Like",
-                "unique_id": "workstation_media_like",
+                "name": "Workstation Media Stop",
+                "unique_id": "workstation_media_stop",
                 "command_topic": cmd_topic,
-                "payload_press": "{\"action\":\"like_toggle\"}",
+                "payload_press": "{\"action\":\"stop\"}",
                 "availability_topic": availability_topic,
                 "payload_available": "online",
                 "payload_not_available": "offline",
@@ -276,13 +279,44 @@ fn handle_command(player: &str, payload: &str) -> Result<()> {
                 anyhow::bail!("volume_set requires numeric value")
             }
         }
-        "like" | "like_toggle" => {
-            if let Ok(script) = std::env::var("MEDIA_ADAPTER_LIKE_COMMAND") {
-                run_shell_command(&script)
+        "volume_up" => {
+            if let Some(value) = cmd.value.and_then(|v| v.as_f64()) {
+                run_playerctl(player, &["volume", &format!("+{}", value)])
             } else {
-                anyhow::bail!("like command is not configured (MEDIA_ADAPTER_LIKE_COMMAND)")
+                run_playerctl(player, &["volume", "+0.05"])
             }
         }
+        "volume_down" => {
+            if let Some(value) = cmd.value.and_then(|v| v.as_f64()) {
+                run_playerctl(player, &["volume", &format!("-{}", value)])
+            } else {
+                run_playerctl(player, &["volume", "-0.05"])
+            }
+        }
+        "mute" => run_playerctl(player, &["volume", "0"]),
+        "position_set" => {
+            if let Some(value) = cmd.value.and_then(|v| v.as_f64()) {
+                run_playerctl(player, &["position", &value.to_string()])
+            } else {
+                anyhow::bail!("position_set requires numeric value in seconds")
+            }
+        }
+        "position_seek" => {
+            if let Some(value) = cmd.value.and_then(|v| v.as_f64()) {
+                if value >= 0.0 {
+                    run_playerctl(player, &["position", &format!("+{}", value)])
+                } else {
+                    run_playerctl(player, &["position", &value.to_string()])
+                }
+            } else {
+                anyhow::bail!("position_seek requires numeric value in seconds")
+            }
+        }
+        "loop_none" => run_playerctl(player, &["loop", "None"]),
+        "loop_track" => run_playerctl(player, &["loop", "Track"]),
+        "loop_playlist" => run_playerctl(player, &["loop", "Playlist"]),
+        "shuffle_on" => run_playerctl(player, &["shuffle", "On"]),
+        "shuffle_off" => run_playerctl(player, &["shuffle", "Off"]),
         _ => anyhow::bail!("unknown action: {}", cmd.action),
     }
 }
@@ -299,7 +333,7 @@ fn parse_command(payload: &str) -> CmdMsg {
 }
 
 fn read_state(player: &str) -> Result<PlayerState> {
-    let format = "{{status}}\t{{artist}}\t{{title}}\t{{album}}\t{{volume}}\t{{playerName}}";
+    let format = "{{status}}\t{{artist}}\t{{title}}\t{{album}}\t{{volume}}\t{{position}}\t{{loop}}\t{{shuffle}}\t{{playerName}}";
     let output = Command::new("playerctl")
         .arg("--player")
         .arg(player)
@@ -320,6 +354,9 @@ fn read_state(player: &str) -> Result<PlayerState> {
     let title = parts.next().unwrap_or("").to_string();
     let album = parts.next().unwrap_or("").to_string();
     let volume = parts.next().unwrap_or("").to_string();
+    let position_seconds = parts.next().unwrap_or("").to_string();
+    let loop_status = parts.next().unwrap_or("").to_string();
+    let shuffle = parts.next().unwrap_or("").to_string();
     let player_name = parts.next().unwrap_or("").to_string();
 
     Ok(PlayerState {
@@ -328,6 +365,9 @@ fn read_state(player: &str) -> Result<PlayerState> {
         title,
         album,
         volume,
+        position_seconds,
+        loop_status,
+        shuffle,
         player: player_name,
     })
 }
@@ -347,16 +387,3 @@ fn run_playerctl(player: &str, args: &[&str]) -> Result<()> {
     }
 }
 
-fn run_shell_command(cmd: &str) -> Result<()> {
-    let status = Command::new("sh")
-        .arg("-c")
-        .arg(cmd)
-        .status()
-        .context("failed to run like command")?;
-
-    if status.success() {
-        Ok(())
-    } else {
-        anyhow::bail!("like command failed")
-    }
-}

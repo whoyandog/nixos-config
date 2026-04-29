@@ -30,17 +30,32 @@ struct Cli {
     player: String,
 }
 
-#[derive(Debug, Serialize, PartialEq, Eq)]
+#[derive(Debug, Serialize, PartialEq)]
 struct PlayerState {
     state: String,
     artist: String,
     title: String,
     album: String,
-    volume: String,
-    position_seconds: String,
+    art_url: String,
+    volume: Option<f64>,
+    position_seconds: Option<f64>,
+    duration_seconds: Option<f64>,
     loop_status: String,
     shuffle: String,
     player: String,
+}
+
+#[derive(Debug, Serialize)]
+struct Capabilities {
+    can_play: bool,
+    can_pause: bool,
+    can_stop: bool,
+    can_next: bool,
+    can_previous: bool,
+    can_seek: bool,
+    can_set_volume: bool,
+    can_shuffle: bool,
+    can_loop: bool,
 }
 
 #[derive(Debug, Deserialize)]
@@ -73,6 +88,7 @@ async fn main() -> Result<()> {
 
     let cmd_topic = format!("{}/cmd", cli.topic);
     let state_topic = format!("{}/state", cli.topic);
+    let capabilities_topic = format!("{}/capabilities", cli.topic);
     let event_topic = format!("{}/event", cli.topic);
 
     let (client, mut eventloop) = AsyncClient::new(opts, 50);
@@ -91,6 +107,27 @@ async fn main() -> Result<()> {
         .subscribe(cmd_topic.clone(), QoS::AtLeastOnce)
         .await
         .context("failed to subscribe to command topic")?;
+
+    let capabilities = Capabilities {
+        can_play: true,
+        can_pause: true,
+        can_stop: true,
+        can_next: true,
+        can_previous: true,
+        can_seek: true,
+        can_set_volume: true,
+        can_shuffle: true,
+        can_loop: true,
+    };
+    client
+        .publish(
+            capabilities_topic,
+            QoS::AtLeastOnce,
+            true,
+            serde_json::to_vec(&capabilities)?,
+        )
+        .await
+        .context("failed to publish capabilities")?;
 
     if cli.discovery {
         publish_discovery(&client, &cli.topic, &state_topic, &cmd_topic).await?;
@@ -116,14 +153,20 @@ async fn main() -> Result<()> {
                         if publish.topic == cmd_topic {
                             let payload = String::from_utf8_lossy(&publish.payload).to_string();
                             if let Err(err) = handle_command(&cli.player, &payload) {
-                                let msg = format!("{{\"status\":\"error\",\"message\":\"{}\"}}", sanitize(&err.to_string()));
+                                let msg = format!(
+                                    "{{\"status\":\"error\",\"message\":\"{}\"}}",
+                                    sanitize(&err.to_string())
+                                );
                                 let _ = client.publish(event_topic.clone(), QoS::AtLeastOnce, false, msg).await;
                             }
                         }
                     }
                     Ok(_) => {}
                     Err(err) => {
-                        let msg = format!("{{\"status\":\"mqtt-error\",\"message\":\"{}\"}}", sanitize(&err.to_string()));
+                        let msg = format!(
+                            "{{\"status\":\"mqtt-error\",\"message\":\"{}\"}}",
+                            sanitize(&err.to_string())
+                        );
                         let _ = client.publish(event_topic.clone(), QoS::AtLeastOnce, false, msg).await;
                         tokio::time::sleep(Duration::from_secs(2)).await;
                     }
@@ -146,7 +189,7 @@ async fn publish_discovery(client: &AsyncClient, base_topic: &str, state_topic: 
         "model": "mpris-mqtt-adapter"
     });
 
-    let discovery_entries: [(&str, serde_json::Value); 8] = [
+    let discovery_entries: [(&str, serde_json::Value); 9] = [
         (
             "homeassistant/sensor/workstation_media_state/config",
             serde_json::json!({
@@ -193,6 +236,19 @@ async fn publish_discovery(client: &AsyncClient, base_topic: &str, state_topic: 
                 "unique_id": "workstation_media_album",
                 "state_topic": state_topic,
                 "value_template": "{{ value_json.album }}",
+                "availability_topic": availability_topic,
+                "payload_available": "online",
+                "payload_not_available": "offline",
+                "device": device
+            }),
+        ),
+        (
+            "homeassistant/sensor/workstation_media_art_url/config",
+            serde_json::json!({
+                "name": "Workstation Media Art URL",
+                "unique_id": "workstation_media_art_url",
+                "state_topic": state_topic,
+                "value_template": "{{ value_json.art_url }}",
                 "availability_topic": availability_topic,
                 "payload_available": "online",
                 "payload_not_available": "offline",
@@ -264,7 +320,7 @@ async fn publish_discovery(client: &AsyncClient, base_topic: &str, state_topic: 
 }
 
 fn handle_command(player: &str, payload: &str) -> Result<()> {
-    let cmd = parse_command(payload);
+    let cmd = parse_command(payload)?;
     match cmd.action.as_str() {
         "play" => run_playerctl(player, &["play"]),
         "pause" => run_playerctl(player, &["pause"]),
@@ -321,19 +377,13 @@ fn handle_command(player: &str, payload: &str) -> Result<()> {
     }
 }
 
-fn parse_command(payload: &str) -> CmdMsg {
-    if let Ok(json) = serde_json::from_str::<CmdMsg>(payload) {
-        return json;
-    }
-
-    CmdMsg {
-        action: payload.trim().to_string(),
-        value: None,
-    }
+fn parse_command(payload: &str) -> Result<CmdMsg> {
+    let json: CmdMsg = serde_json::from_str(payload).context("command payload must be valid JSON")?;
+    Ok(json)
 }
 
 fn read_state(player: &str) -> Result<PlayerState> {
-    let format = "{{status}}\t{{artist}}\t{{title}}\t{{album}}\t{{volume}}\t{{position}}\t{{loop}}\t{{shuffle}}\t{{playerName}}";
+    let format = "{{status}}\t{{artist}}\t{{title}}\t{{album}}\t{{mpris:artUrl}}\t{{volume}}\t{{position}}\t{{mpris:length}}\t{{loop}}\t{{shuffle}}\t{{playerName}}";
     let output = Command::new("playerctl")
         .arg("--player")
         .arg(player)
@@ -353,8 +403,10 @@ fn read_state(player: &str) -> Result<PlayerState> {
     let artist = parts.next().unwrap_or("").to_string();
     let title = parts.next().unwrap_or("").to_string();
     let album = parts.next().unwrap_or("").to_string();
-    let volume = parts.next().unwrap_or("").to_string();
-    let position_seconds = parts.next().unwrap_or("").to_string();
+    let art_url = parts.next().unwrap_or("").to_string();
+    let volume = parse_f64(parts.next().unwrap_or(""));
+    let position_seconds = parse_mpris_position(parts.next().unwrap_or(""));
+    let duration_seconds = parse_mpris_length(parts.next().unwrap_or(""));
     let loop_status = parts.next().unwrap_or("").to_string();
     let shuffle = parts.next().unwrap_or("").to_string();
     let player_name = parts.next().unwrap_or("").to_string();
@@ -364,12 +416,37 @@ fn read_state(player: &str) -> Result<PlayerState> {
         artist,
         title,
         album,
+        art_url,
         volume,
         position_seconds,
+        duration_seconds,
         loop_status,
         shuffle,
         player: player_name,
     })
+}
+
+fn parse_f64(value: &str) -> Option<f64> {
+    let trimmed = value.trim();
+    if trimmed.is_empty() {
+        return None;
+    }
+    trimmed.parse::<f64>().ok()
+}
+
+fn parse_mpris_length(value: &str) -> Option<f64> {
+    let micros = parse_f64(value)?;
+    Some(micros / 1_000_000.0)
+}
+
+fn parse_mpris_position(value: &str) -> Option<f64> {
+    let raw = parse_f64(value)?;
+
+    if raw.abs() > 100_000.0 {
+        Some(raw / 1_000_000.0)
+    } else {
+        Some(raw)
+    }
 }
 
 fn run_playerctl(player: &str, args: &[&str]) -> Result<()> {

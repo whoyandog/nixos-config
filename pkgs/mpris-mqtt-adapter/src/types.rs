@@ -16,7 +16,7 @@ pub struct PlayerState {
     pub player: String,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, PartialEq, Clone)]
 pub struct Capabilities {
     pub can_play: bool,
     pub can_pause: bool,
@@ -27,6 +27,22 @@ pub struct Capabilities {
     pub can_set_volume: bool,
     pub can_shuffle: bool,
     pub can_loop: bool,
+}
+
+impl Capabilities {
+    pub fn unavailable() -> Self {
+        Self {
+            can_play: false,
+            can_pause: false,
+            can_stop: false,
+            can_next: false,
+            can_previous: false,
+            can_seek: false,
+            can_set_volume: false,
+            can_shuffle: false,
+            can_loop: false,
+        }
+    }
 }
 
 #[derive(Debug, Deserialize)]

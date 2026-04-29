@@ -13,7 +13,7 @@ mod util;
 use commands::handle_command;
 use config::Cli;
 use discovery::publish_discovery;
-use playerctl::read_state;
+use playerctl::{detect_capabilities, read_state};
 use types::{Capabilities, PlayerState};
 use util::sanitize;
 
@@ -61,20 +61,10 @@ async fn main() -> Result<()> {
         .await
         .context("failed to subscribe to command topic")?;
 
-    let capabilities = Capabilities {
-        can_play: true,
-        can_pause: true,
-        can_stop: true,
-        can_next: true,
-        can_previous: true,
-        can_seek: true,
-        can_set_volume: true,
-        can_shuffle: true,
-        can_loop: true,
-    };
+    let capabilities = detect_capabilities(&cli.player).unwrap_or_else(|_| Capabilities::unavailable());
     client
         .publish(
-            capabilities_topic,
+            capabilities_topic.clone(),
             QoS::AtLeastOnce,
             true,
             serde_json::to_vec(&capabilities)?,
@@ -88,10 +78,18 @@ async fn main() -> Result<()> {
 
     let mut ticker = tokio::time::interval(Duration::from_secs(cli.poll_seconds));
     let mut last_state: Option<PlayerState> = None;
+    let mut last_capabilities: Option<Capabilities> = Some(capabilities);
 
     loop {
         tokio::select! {
             _ = ticker.tick() => {
+                let capabilities = detect_capabilities(&cli.player).unwrap_or_else(|_| Capabilities::unavailable());
+                if last_capabilities.as_ref() != Some(&capabilities) {
+                    let payload = serde_json::to_vec(&capabilities)?;
+                    client.publish(capabilities_topic.clone(), QoS::AtLeastOnce, true, payload).await?;
+                    last_capabilities = Some(capabilities);
+                }
+
                 if let Ok(state) = read_state(&cli.player) {
                     if last_state.as_ref() != Some(&state) {
                         let payload = serde_json::to_vec(&state)?;

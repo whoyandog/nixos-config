@@ -5,7 +5,6 @@
     git
     ouch
     screenfetch
-    yazi
     thunar
   ];
 }

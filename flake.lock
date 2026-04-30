@@ -158,6 +158,22 @@
         "type": "github"
       }
     },
+    "mpris-mqtt-adapter-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1777507717,
+        "narHash": "sha256-JAxXBQInMnYAlSeHfB5t+9uZVw1UeMo9hBpi3ZgfPXo=",
+        "owner": "whoyandog",
+        "repo": "mpris-mqtt-adapter",
+        "rev": "c990e9e603a867096188b64b44b0e0152bf384c1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "whoyandog",
+        "repo": "mpris-mqtt-adapter",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1776169885,
@@ -202,6 +218,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "mpris-mqtt-adapter-src": "mpris-mqtt-adapter-src",
         "nixpkgs": "nixpkgs",
         "stylix": "stylix",
         "zen-browser": "zen-browser"

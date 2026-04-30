@@ -18,6 +18,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+
+    mpris-mqtt-adapter-src = {
+      url = "github:whoyandog/mpris-mqtt-adapter";
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ...}@inputs: {
@@ -31,7 +36,9 @@
         {
           nixpkgs.overlays = [
             (final: prev: {
-              mpris-mqtt-adapter = final.callPackage ./pkgs/mpris-mqtt-adapter { };
+              mpris-mqtt-adapter = final.callPackage ./pkgs/mpris-mqtt-adapter.nix {
+                src = inputs.mpris-mqtt-adapter-src;
+              };
             })
           ];
 

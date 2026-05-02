@@ -161,11 +161,11 @@
     "mpris-mqtt-adapter-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1777507717,
-        "narHash": "sha256-JAxXBQInMnYAlSeHfB5t+9uZVw1UeMo9hBpi3ZgfPXo=",
+        "lastModified": 1777739227,
+        "narHash": "sha256-Q/Mug+zzjQXY3YqYKy+tHkynfNSKJ2JyuBSvCB+Kanw=",
         "owner": "whoyandog",
         "repo": "mpris-mqtt-adapter",
-        "rev": "c990e9e603a867096188b64b44b0e0152bf384c1",
+        "rev": "702d6a889217817fce64f90cac5692cd2998c019",
         "type": "github"
       },
       "original": {
@@ -244,11 +244,11 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1777501441,
-        "narHash": "sha256-+QWZ2/LvtEfbI4a5OiJmfv8aypBdm0u4Ui9t6LNHkRc=",
+        "lastModified": 1777580129,
+        "narHash": "sha256-6buSTzDtHYCJP1JNAIZCmgNcOs76oN03j+21CxdijVo=",
         "owner": "danth",
         "repo": "stylix",
-        "rev": "0bd266569c03b74234b8a2ae73d05055fb02a35f",
+        "rev": "20ff51f523e2dd67e5f31a321719d30708c1b771",
         "type": "github"
       },
       "original": {

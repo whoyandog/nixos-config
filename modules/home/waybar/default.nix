@@ -3,6 +3,7 @@
   programs.waybar = {
     enable = true;
     systemd.enable = true;
+    style = builtins.readFile ./style.css;
 
     settings = {
       mainBar = {
@@ -11,17 +12,23 @@
 
         modules-left = [ "niri/workspaces" "niri/window" ];
         modules-center = [ "clock" ];
-        modules-right = [ "network" "pulseaudio" "battery" "tray" ];
+        modules-right = [ "network" "niri/language" "pulseaudio" "tray" ];
 
         clock = {
           format = "{:%a %d %b  %H:%M}";
           tooltip-format = "{:%Y-%m-%d %H:%M:%S}";
         };
 
+        "niri/language" = {
+          format = "{}";
+          format-en = "EN";
+          format-ru = "RU";
+        };
+
         network = {
           format-wifi = "Wi-Fi {signalStrength}%";
-          format-ethernet = "LAN";
-          format-disconnected = "Offline";
+          format-ethernet = "WAN";
+          format-disconnected = "Off";
           tooltip-format = "{ifname} via {gwaddr}";
         };
 
@@ -33,16 +40,6 @@
           };
         };
 
-        battery = {
-          states = {
-            warning = 30;
-            critical = 15;
-          };
-          format = "{capacity}%";
-          format-charging = "+ {capacity}%";
-          format-full = "Full";
-          format-icons = [ "Bat" "Bat" "Bat" "Bat" "Bat" ];
-        };
       };
     };
   };

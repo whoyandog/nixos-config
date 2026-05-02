@@ -161,11 +161,11 @@
     "mpris-mqtt-adapter-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1777739227,
-        "narHash": "sha256-Q/Mug+zzjQXY3YqYKy+tHkynfNSKJ2JyuBSvCB+Kanw=",
+        "lastModified": 1777741766,
+        "narHash": "sha256-Bvb67Fs1YFrkLUNJTeDrGDctz6dsKEd/VOo0rIgaDyo=",
         "owner": "whoyandog",
         "repo": "mpris-mqtt-adapter",
-        "rev": "702d6a889217817fce64f90cac5692cd2998c019",
+        "rev": "3d5888c28db41a30c8895d491e16b12a95f9d06e",
         "type": "github"
       },
       "original": {

@@ -6,6 +6,7 @@
     ./networking.nix
     ./audio.nix
     ./graphics.nix
+    ./fonts.nix
     ./peripherals.nix
     ./ai.nix
   ];

@@ -33,10 +33,10 @@
         };
 
         pulseaudio = {
-          format = "{volume}% {icon}";
-          format-muted = "Muted";
+          format = "{icon} {volume}%";
+          format-muted = "󰝟 Muted";
           format-icons = {
-            default = [ "Vol" "Vol" "Vol" ];
+            default = [ "󰕿" "󰖀" "󰕾" ];
           };
         };
 

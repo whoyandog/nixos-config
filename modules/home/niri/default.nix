@@ -82,5 +82,24 @@
 			WantedBy = [ "graphical-session.target" ];
 		};
 	};
+
+	systemd.user.services.polkit-authentication-agent = {
+		Unit = {
+			Description = "Polkit authentication agent";
+			After = [ "graphical-session.target" ];
+			PartOf = [ "graphical-session.target" ];
+		};
+
+		Service = {
+			Type = "simple";
+			ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+			Restart = "on-failure";
+			RestartSec = 2;
+		};
+
+		Install = {
+			WantedBy = [ "graphical-session.target" ];
+		};
+	};
 }
 

@@ -1,5 +1,7 @@
 { pkgs, ... } : {
     services.upower.enable = true;
+    services.gvfs.enable = true;
+    services.udisks2.enable = true;
 
     # Required for desktop portal authorization prompts in Wayland sessions.
     security.polkit.enable = true;

@@ -9,6 +9,10 @@ require("lualine").setup({
 
 require("telescope").setup({})
 
+vim.api.nvim_create_user_command("LspInfo", function()
+  vim.cmd("checkhealth vim.lsp")
+end, { desc = "Show built-in LSP health information" })
+
 require("blink.cmp").setup({
   completion = {
     documentation = {
@@ -51,7 +55,7 @@ vim.g.rustaceanvim = {
         cargo = {
           allFeatures = true,
         },
-        checkOnSave = {
+        check = {
           command = "clippy",
         },
       },

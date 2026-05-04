@@ -10,6 +10,10 @@
 	xdg.mimeApps = {
 		enable = true;
 		defaultApplications = {
+			"x-scheme-handler/http" = [ "zen-beta.desktop" ];
+			"x-scheme-handler/https" = [ "zen-beta.desktop" ];
+			"text/html" = [ "zen-beta.desktop" ];
+			"application/xhtml+xml" = [ "zen-beta.desktop" ];
 			"image/jpeg" = [ "org.gnome.Loupe.desktop" ];
 			"image/png" = [ "org.gnome.Loupe.desktop" ];
 			"image/webp" = [ "org.gnome.Loupe.desktop" ];
@@ -47,6 +51,10 @@
 	# home.sessionVariables = {
 		# QT_QPA_PLATFORM = "wayland;xcb";
 	# };
+
+	home.sessionVariables = {
+		BROWSER = "zen-beta";
+	};
 
 	systemd.user.services.xwayland-satellite = {
 		Unit = {

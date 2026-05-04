@@ -2,6 +2,7 @@
   imports = [ 
     ./cursor
     ./kitty
+    ./neovim
     ./niri
     ./git
     ./waybar

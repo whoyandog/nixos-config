@@ -14,6 +14,9 @@
 
     # obsidian
     obsidian
+
+    # telegram
+    telegram-desktop
   ];
 }
 

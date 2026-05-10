@@ -10,17 +10,18 @@
         enable = true;
         xdgOpenUsePortal = true;
 
-        # `wlr` provides screencast on wlroots-like compositors; `gtk` handles file chooser.
+        # Use GNOME portal for screencast picker compatibility with browser clients.
         extraPortals = with pkgs; [
+            xdg-desktop-portal-gnome
             xdg-desktop-portal-wlr
             xdg-desktop-portal-gtk
         ];
 
         config = {
-            common.default = [ "wlr" "gtk" ];
+            common.default = [ "gnome" "gtk" "wlr" ];
             niri."org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
-            niri."org.freedesktop.impl.portal.ScreenCast" = [ "wlr" ];
-            niri."org.freedesktop.impl.portal.Screenshot" = [ "wlr" ];
+            niri."org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
+            niri."org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
         };
     };
 }

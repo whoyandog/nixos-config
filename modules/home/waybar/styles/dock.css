@@ -1,0 +1,56 @@
+window#waybar.dock > box {
+	padding: 0 0 4px 0;
+}
+
+window#waybar.dock .modules-center {
+	background: rgba(30, 30, 46, 0.94);
+	border: 1px solid rgba(137, 180, 250, 0.30);
+	border-radius: 16px;
+	padding: 8px 10px;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+#custom-app-zen-beta,
+#custom-app-thunar,
+#custom-app-vscode,
+#custom-app-steam,
+#custom-app-obsidian {
+	font-size: 0;
+	min-width: 34px;
+	min-height: 34px;
+	padding: 0;
+	margin: 0 2px;
+	border-radius: 10px;
+	background-size: 24px 24px;
+	background-position: center;
+	background-repeat: no-repeat;
+	transition: background-color 120ms ease;
+}
+
+#custom-app-zen-beta:hover,
+#custom-app-thunar:hover,
+#custom-app-vscode:hover,
+#custom-app-steam:hover,
+#custom-app-obsidian:hover {
+	background-color: rgba(137, 180, 250, 0.20);
+}
+
+#custom-app-zen-beta {
+	background-image: url("/run/current-system/sw/share/icons/hicolor/128x128/apps/zen-browser.png");
+}
+
+#custom-app-thunar {
+	background-image: -gtk-icontheme("org.xfce.thunar");
+}
+
+#custom-app-vscode {
+	background-image: url("/run/current-system/sw/share/pixmaps/vscode.png");
+}
+
+#custom-app-steam {
+	background-image: -gtk-icontheme("steam");
+}
+
+#custom-app-obsidian {
+	background-image: -gtk-icontheme("obsidian");
+}

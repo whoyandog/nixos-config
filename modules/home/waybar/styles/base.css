@@ -1,0 +1,22 @@
+* {
+	border: none;
+	border-radius: 0;
+	font-family: "JetBrainsMono Nerd Font", "JoyPixels", "Noto Color Emoji", "Noto Sans", sans-serif;
+	font-size: 13px;
+	min-height: 0;
+}
+
+window#waybar {
+	background: transparent;
+	color: #cdd6f4;
+}
+
+window#waybar > box {
+	padding: 16px 16px 0 16px;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+	margin: 0;
+}

@@ -1,46 +1,20 @@
 { ... }:
+let
+  mainBar = import ./settings/main-bar.nix;
+  dockBar = import ./settings/dock-bar.nix;
+in
 {
   programs.waybar = {
     enable = true;
     systemd.enable = true;
-    style = builtins.readFile ./style.css;
+    style = builtins.concatStringsSep "\n" [
+      (builtins.readFile ./styles/base.css)
+      (builtins.readFile ./styles/top-bar.css)
+      (builtins.readFile ./styles/dock.css)
+    ];
 
     settings = {
-      mainBar = {
-        layer = "top";
-        position = "top";
-
-        modules-left = [ "niri/workspaces" "niri/window" ];
-        modules-center = [ "clock" ];
-        modules-right = [ "network" "niri/language" "pulseaudio" "tray" ];
-
-        clock = {
-          format = "{:%a %d %b  %H:%M}";
-          tooltip-format = "{:%Y-%m-%d %H:%M:%S}";
-        };
-
-        "niri/language" = {
-          format = "{}";
-          format-en = "EN";
-          format-ru = "RU";
-        };
-
-        network = {
-          format-wifi = "Wi-Fi {signalStrength}%";
-          format-ethernet = "WAN";
-          format-disconnected = "Off";
-          tooltip-format = "{ifname} via {gwaddr}";
-        };
-
-        pulseaudio = {
-          format = "{icon} {volume}%";
-          format-muted = "󰝟 Muted";
-          format-icons = {
-            default = [ "󰕿" "󰖀" "󰕾" ];
-          };
-        };
-
-      };
+      inherit mainBar dockBar;
     };
   };
 }

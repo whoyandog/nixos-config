@@ -54,6 +54,7 @@
 
 	home.sessionVariables = {
 		BROWSER = "zen-beta";
+		MOZ_ENABLE_WAYLAND = "1";
 	};
 
 	systemd.user.services.xwayland-satellite = {

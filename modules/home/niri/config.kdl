@@ -274,7 +274,6 @@ layout {
 // Spawn wallpapers
 spawn-at-startup "awww" "img" "/home/dmitry/pictures/wallpaper.jpg" "--transition-fps" "75"
 
-
 // Spawn xwayland, waybar and solaar via systemd --user services.
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:

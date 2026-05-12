@@ -2,9 +2,11 @@
 {
   imports = [
     ./secrets.nix
+    ./zapret.nix
   ];
 
-  # Configure network connections interactively with nmcli or nmtui.
+  networking.nftables.enable = true;
   networking.networkmanager.enable = true;
+
   local.networking.n8n.enable = false;
 }

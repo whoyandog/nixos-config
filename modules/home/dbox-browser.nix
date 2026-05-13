@@ -29,8 +29,16 @@ let
         wget \
         gnupg \
         xdg-utils \
-        libnss3-tools
+        libnss3-tools \
+        ffmpeg \
+        libavcodec-extra \
+        gstreamer1.0-libav \
+        gstreamer1.0-plugins-bad \
+        gstreamer1.0-plugins-ugly \
+        gstreamer1.0-plugins-good
       sudo update-ca-certificates
+      sudo ln -sf /usr/share/zoneinfo/Asia/Yekaterinburg /etc/localtime
+      echo "Asia/Yekaterinburg" | sudo tee /etc/timezone
     '
 
     echo "Container is ready: $CONTAINER_NAME"

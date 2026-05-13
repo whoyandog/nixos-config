@@ -4,6 +4,7 @@
   position = "bottom";
   exclusive = true;
   fixed-center = true;
+  width = 320;
   margin-bottom = 14;
 
   modules-left = [ ];

@@ -12,7 +12,7 @@ window#waybar {
 }
 
 window#waybar > box {
-	padding: 16px 16px 0 16px;
+	padding: 0;
 }
 
 .modules-left,

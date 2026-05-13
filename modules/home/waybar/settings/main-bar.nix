@@ -1,6 +1,11 @@
 {
   layer = "top";
   position = "top";
+  exclusive = true;
+  fixed-center = true;
+  margin-top = 16;
+  margin-left = 16;
+  margin-right = 16;
 
   modules-left = [ "niri/workspaces" "niri/window" ];
   modules-center = [ "clock" ];

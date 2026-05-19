@@ -4,7 +4,7 @@
     kitty
     fuzzel
     wl-clipboard
-
+    
     # wallpapers
     awww
 

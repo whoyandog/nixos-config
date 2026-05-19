@@ -10,7 +10,8 @@ let
     '';
   });
 in {
-  environment.systemPackages = [
+  environment.systemPackages = with pkgs; [
     vscodeWithDesktopIcon
+    python3
   ];
 }

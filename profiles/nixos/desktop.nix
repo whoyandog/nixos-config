@@ -17,6 +17,9 @@
 
     # telegram
     telegram-desktop
+
+    # discord
+    discord
   ];
 }
 

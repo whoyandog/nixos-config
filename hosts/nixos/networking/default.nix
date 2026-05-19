@@ -8,5 +8,5 @@
   networking.nftables.enable = true;
   networking.networkmanager.enable = true;
 
-  local.networking.n8n.enable = false;
+  local.networking.n8n.enable = true;
 }

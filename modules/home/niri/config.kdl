@@ -333,6 +333,14 @@ window-rule {
     open-floating true
 }
 
+// Open rename window as floating by default.
+window-rule {
+    // Match any window whose title contains a rename dialog label.
+    // This works for titles like "Переименовать", "Переименовать файл" and similar.
+    match title="(?i)(Rename|Переименовать)"
+    open-floating true
+}
+
 // Enable rounded corners for all windows.
 window-rule {
     geometry-corner-radius 12

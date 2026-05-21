@@ -18,6 +18,9 @@
     # telegram
     telegram-desktop
 
+    # graphic redactor
+    krita
+
     # discord
     discord
   ];

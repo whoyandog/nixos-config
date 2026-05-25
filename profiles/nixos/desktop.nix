@@ -23,6 +23,9 @@
 
     # discord
     discord
+
+    # libreoffice 
+    libreoffice
   ];
 }
 

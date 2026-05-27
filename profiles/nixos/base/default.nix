@@ -9,6 +9,5 @@
     ./graphics.nix
     ./fonts.nix
     ./peripherals.nix
-    ./ai.nix
   ];
 }

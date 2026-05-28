@@ -1,4 +1,4 @@
-{ lib, rustPlatform, pkg-config, makeWrapper, playerctl, src }:
+{ lib, rustPlatform, pkg-config, makeWrapper, playerctl, src, fetchCrate }:
 
 rustPlatform.buildRustPackage {
   pname = "mpris-mqtt-adapter";
@@ -6,9 +6,7 @@ rustPlatform.buildRustPackage {
 
   inherit src;
 
-  cargoLock = {
-    lockFile = "${src}/Cargo.lock";
-  };
+  cargoHash = "sha256-gtf61YDd5IydLHQvjIrOTS7RwrleBoQtvtXS4spBjYo=";
 
   nativeBuildInputs = [
     pkg-config

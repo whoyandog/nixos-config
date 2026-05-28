@@ -14,5 +14,6 @@ in
     pkgs.rustfmt
     pkgs.rust-analyzer
     pkgs.opencode
+    pkgs.podman-compose
   ];
 }

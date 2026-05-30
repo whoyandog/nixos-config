@@ -79,7 +79,6 @@ in
         Type = "simple";
         PIDFile = "/run/nfqws.pid";
         Restart = "always";
-        RuntimeMaxSec = "1h";
         DevicePolicy = "closed";
         KeyringMode = "private";
         PrivateTmp = true;

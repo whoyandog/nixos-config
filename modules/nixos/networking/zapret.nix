@@ -109,8 +109,8 @@ in
             ct original packets 1-6 meta mark & 0x40000000 != 0x40000000 \
             queue flags bypass to ${qnum}
 
-          # QUIC + Discord UDP
-          udp dport { 443, 19294-19344, 50000-50100 } \
+          # QUIC + Discord/EOS/Steam UDP
+          udp dport { 443, 3478-3479, 4379-4380, 7777-7780, 19294-19344, 27000-27100, 50000-50100 } \
             ct original packets 1-3 meta mark & 0x40000000 != 0x40000000 \
             queue flags bypass to ${qnum}
         }

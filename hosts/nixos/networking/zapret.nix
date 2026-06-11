@@ -36,13 +36,12 @@ in
       "--dpi-desync-repeats=6"
       "--dpi-desync-fake-quic=${fake}/quic_initial_www_google_com.bin"
       "--new"
-      # 2. Discord UDP (голос/видео)
+      # 2. Discord UDP (голос/видео), мягкий профиль
       "--filter-udp=19294-19344,50000-50100"
-      "--filter-l7=discord,stun"
+      "--filter-l7=discord"
       "--dpi-desync=fake"
       "--dpi-desync-fake-discord=${fake}/quic_initial_www_google_com.bin"
-      "--dpi-desync-fake-stun=${fake}/quic_initial_www_google_com.bin"
-      "--dpi-desync-repeats=6"
+      "--dpi-desync-repeats=3"
       "--new"
       # 3. Discord media (альт. HTTPS порты)
       "--filter-tcp=2053,2083,2087,2096,8443"

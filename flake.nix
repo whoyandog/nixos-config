@@ -39,6 +39,7 @@
               mpris-mqtt-adapter = final.callPackage ./pkgs/mpris-mqtt-adapter.nix {
                 src = inputs.mpris-mqtt-adapter-src;
               };
+              tg-ws-proxy = final.callPackage ./pkgs/tg-ws-proxy.nix { };
             })
           ];
 

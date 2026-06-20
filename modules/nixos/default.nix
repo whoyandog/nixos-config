@@ -7,6 +7,7 @@
     ./steam
     ./networking
     ./logitech
+    ./tg-ws-proxy.nix
   ];
 
   programs.niri.enable = true;

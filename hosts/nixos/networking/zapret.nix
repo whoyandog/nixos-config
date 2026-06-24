@@ -59,7 +59,8 @@ in
       "--filter-l7=discord,stun"
       "--dpi-desync=fake"
       "--dpi-desync-repeats=6"
-      "--dpi-desync-fake-discord=${fake}/quic_initial_www_google_com.bin"
+      "--dpi-desync-fake-discord=${../../../files/fake/quic_initial_dbankcloud_ru.bin}"
+      "--dpi-desync-fake-stun=${../../../files/fake/quic_initial_dbankcloud_ru.bin}"
       "--new"
       # 3. Discord media TCP (альт. HTTPS порты)
       "--filter-tcp=2053,2083,2087,2096,8443"

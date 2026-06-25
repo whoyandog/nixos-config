@@ -65,11 +65,9 @@ in
       # 3. Discord media TCP (альт. HTTPS порты)
       "--filter-tcp=2053,2083,2087,2096,8443"
       "--hostlist=${discordList}"
-      "--dpi-desync=fake,fakedsplit"
-      "--dpi-desync-repeats=6"
-      "--dpi-desync-fooling=ts"
-      "--dpi-desync-fakedsplit-pattern=0x00"
-      "--dpi-desync-fake-tls=${fake}/tls_clienthello_www_google_com.bin"
+      "--dpi-desync=fake"
+      "--dpi-desync-ttl=3"
+      "--dpi-desync-fake-tls-mod=rnd,dupsid,rndsni,padencap"
       "--new"
       # 4. YouTube TCP 443 — TLS1.3, fake+ttl=3+tls-mod + ip-id=zero
       "--filter-tcp=443"
@@ -82,11 +80,9 @@ in
       # 5. Discord TCP 80+443
       "--filter-tcp=80,443"
       "--hostlist=${discordList}"
-      "--dpi-desync=fake,fakedsplit"
-      "--dpi-desync-repeats=6"
-      "--dpi-desync-fooling=ts"
-      "--dpi-desync-fakedsplit-pattern=0x00"
-      "--dpi-desync-fake-tls=${fake}/tls_clienthello_www_google_com.bin"
+      "--dpi-desync=fake"
+      "--dpi-desync-ttl=3"
+      "--dpi-desync-fake-tls-mod=rnd,dupsid,rndsni,padencap"
       "--new"
       # 6. NixOS cache и другие TLS1.3 сервисы
       "--filter-tcp=443"

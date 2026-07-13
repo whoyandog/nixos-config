@@ -9,3 +9,6 @@ result-*
 *.swp
 *~
 .aider*
+
+# home-manager 
+hm-patched

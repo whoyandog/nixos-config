@@ -1,4 +1,4 @@
-{ ... }:
+{ config, pkgs, ... }:
 {
   imports = [
     ./secrets.nix
@@ -15,4 +15,7 @@
   # throne settings, mb i shoul put it in another file 
   programs.throne.enable = true;
   programs.throne.tunMode.enable = true;
+
+  # flatpack
+  services.flatpak.enable = true;
 }

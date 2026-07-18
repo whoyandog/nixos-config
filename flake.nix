@@ -26,11 +26,11 @@
   };
 
   outputs = { self, nixpkgs, home-manager, ...}@inputs: {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+    nixosConfigurations."pc-dmitry" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [ 
-        ./hosts/nixos/default.nix 
+        ./hosts/pc-dmitry/default.nix 
         inputs.stylix.nixosModules.stylix
         home-manager.nixosModules.home-manager 
         {
@@ -46,7 +46,70 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.backupFileExtension = "backup";
-          home-manager.users.dmitry = import ./home/dmitry.nix;
+          home-manager.users.dmitry = {
+            imports = [
+              ./home/dmitry.nix
+              ./profiles/home/base.nix
+              ./profiles/home/dev.nix
+              ./profiles/home/mpris-mqtt-adapter.nix
+              ./modules/home/cursor
+              ./modules/home/kitty
+              ./modules/home/neovim
+              ./modules/home/niri
+              ./modules/home/git
+              ./modules/home/waybar
+              ./modules/home/mpris-mqtt-adapter
+              ./modules/home/dbox-browser.nix
+            ];
+          };
+        }
+      ];
+    };
+
+    nixosConfigurations."tablet-dmitry" = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = { inherit inputs; };
+      modules = [ 
+        ./hosts/tablet-dmitry/default.nix 
+        inputs.stylix.nixosModules.stylix
+        home-manager.nixosModules.home-manager 
+        {
+          # overlays, etc. for tablet if needed
+
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "backup";
+          home-manager.users.dmitry = {
+            imports = [
+              ./home/dmitry.nix
+              ./profiles/home/base.nix
+              ./modules/home/git
+              ./modules/home/neovim
+              # tablet specific stuff
+            ];
+          };
+        }
+      ];
+    };
+
+    nixosConfigurations.server = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = { inherit inputs; };
+      modules = [ 
+        ./hosts/server/default.nix
+        home-manager.nixosModules.home-manager 
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "backup";
+          home-manager.users.dmitry = {
+            imports = [
+              ./home/dmitry.nix
+              ./profiles/home/base.nix
+              ./modules/home/git
+              ./modules/home/neovim
+            ];
+          };
         }
       ];
     };

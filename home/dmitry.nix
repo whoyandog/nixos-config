@@ -23,10 +23,5 @@
   stylix.targets.qt.enable = false;
   stylix.targets.kde.enable = false;
 
-  imports = [
-    ../profiles/home
-    ../modules/home
-  ];
-
   programs.home-manager.enable = true;
 }

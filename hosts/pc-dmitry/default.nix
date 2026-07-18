@@ -9,14 +9,24 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./networking
-      ./time.nix
-      ./locale.nix
+      ../../modules/nixos/core/time.nix
+      ../../modules/nixos/core/locale.nix
       ./virtualization.nix
       ./audio
-      ./users
-      ./nix-settings.nix
-      ../../profiles/nixos
-      ../../modules/nixos
+      ../../modules/nixos/core/users
+      ../../modules/nixos/core/nix-settings.nix
+      ../../profiles/nixos/base
+      ../../profiles/nixos/desktop.nix
+      ../../profiles/nixos/dev.nix
+      ../../profiles/nixos/gamedev.nix
+      ../../modules/nixos/login
+      ../../modules/nixos/system
+      ../../modules/nixos/stylix
+      ../../modules/nixos/nvidia
+      ../../modules/nixos/steam
+      ../../modules/nixos/networking
+      ../../modules/nixos/logitech
+      ../../modules/nixos/tg-ws-proxy.nix
     ];
 
   # Use the systemd-boot EFI boot loader.

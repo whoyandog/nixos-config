@@ -3,6 +3,7 @@
   imports = [
     ./secrets.nix
     ./zapret.nix
+    ./throne.nix
   ];
 
   networking.nftables.enable = true;
@@ -12,10 +13,4 @@
 
   local.networking.n8n.enable = false;
 
-  # throne settings, mb i shoul put it in another file 
-  programs.throne.enable = true;
-  programs.throne.tunMode.enable = true;
-
-  # flatpack
-  services.flatpak.enable = true;
 }

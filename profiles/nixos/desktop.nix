@@ -27,5 +27,7 @@
     # libreoffice 
     libreoffice
   ];
+
+  services.flatpak.enable = true;
 }
 

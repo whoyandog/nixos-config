@@ -13,5 +13,9 @@ in {
   environment.systemPackages = with pkgs; [
     vscodeWithDesktopIcon
     python3
+
+    # for github copilot
+    bubblewrap
+    socat
   ];
 }

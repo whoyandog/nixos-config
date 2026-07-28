@@ -18,6 +18,9 @@
     # telegram
     telegram-desktop
 
+    # yandex music
+    inputs.yandex-music.packages.${pkgs.stdenv.hostPlatform.system}.default
+
     # graphic redactor
     krita
 

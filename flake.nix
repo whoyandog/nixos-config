@@ -23,6 +23,11 @@
       url = "github:whoyandog/mpris-mqtt-adapter";
       flake = false;
     };
+
+    yandex-music = {
+      url = "github:whoyandog/yandex-music-app";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ...}@inputs: {

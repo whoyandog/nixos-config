@@ -223,6 +223,7 @@
         "mpris-mqtt-adapter-src": "mpris-mqtt-adapter-src",
         "nixpkgs": "nixpkgs",
         "stylix": "stylix",
+        "yandex-music": "yandex-music",
         "zen-browser": "zen-browser"
       }
     },
@@ -335,6 +336,26 @@
       "original": {
         "owner": "tinted-theming",
         "repo": "base16-zed",
+        "type": "github"
+      }
+    },
+    "yandex-music": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785246071,
+        "narHash": "sha256-7fKemBouVkaPGI+ImG1c04LpbFDCxYMrtS7NX9zNk6U=",
+        "owner": "whoyandog",
+        "repo": "yandex-music-app",
+        "rev": "ceebfa3e224de6ca6e21cf92c6f1412a049995d2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "whoyandog",
+        "repo": "yandex-music-app",
         "type": "github"
       }
     },

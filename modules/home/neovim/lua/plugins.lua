@@ -21,6 +21,7 @@ require("blink.cmp").setup({
   },
   keymap = {
     preset = "default",
+    ["<Tab>"] = { "select_and_accept", "fallback" },
     ["<C-Space>"] = { "show", "show_documentation", "hide_documentation" },
   },
   sources = {

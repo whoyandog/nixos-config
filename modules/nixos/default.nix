@@ -8,6 +8,7 @@
     ./networking
     ./logitech
     ./tg-ws-proxy.nix
+    #./iphone-webcam.nix
   ];
 
   programs.niri.enable = true;

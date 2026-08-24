@@ -13,5 +13,5 @@
 
   local.networking.n8n.enable = false;
 
-  networking.firewall.allowedTCPPorts = [ 5173 ];
+  networking.firewall.allowedTCPPorts = [ 5173 8765 ];
 }

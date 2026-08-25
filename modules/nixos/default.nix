@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   imports = [
     ./login
     ./system

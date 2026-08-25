@@ -7,7 +7,7 @@
   width = 320;
   margin-bottom = 14;
 
-  modules-left = [ ];
+  modules-left = [];
   modules-center = [
     "custom/app-zen-beta"
     "custom/app-thunar"
@@ -15,7 +15,7 @@
     "custom/app-steam"
     "custom/app-obsidian"
   ];
-  modules-right = [ ];
+  modules-right = [];
 
   "custom/app-zen-beta" = {
     format = " ";

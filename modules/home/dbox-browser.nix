@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   dboxBrowserInit = pkgs.writeShellScriptBin "dbox-browser-init" ''
     set -euo pipefail
 
@@ -52,12 +51,11 @@ let
     exec = "yandex-browser-corporate %U"; # Вызывает твой скрипт выше
     icon = "yandex-browser"; # Подтянет иконку, если она есть в системе
     terminal = false;
-    categories = [ "Network" "WebBrowser" ];
-    mimeTypes = [ "text/html" "text/xml" "application/xhtml+xml" "x-scheme-handler/http" "x-scheme-handler/https" ];
+    categories = ["Network" "WebBrowser"];
+    mimeTypes = ["text/html" "text/xml" "application/xhtml+xml" "x-scheme-handler/http" "x-scheme-handler/https"];
     startupWMClass = "yandex-browser-corporate";
   };
-in
-{
+in {
   home.packages = with pkgs; [
     distrobox
     dboxBrowserInit

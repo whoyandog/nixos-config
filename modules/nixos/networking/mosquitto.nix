@@ -1,5 +1,5 @@
-{ ... } : {
-    services.mosquitto = {
-        enable = true;
-    };
+{...}: {
+  services.mosquitto = {
+    enable = true;
+  };
 }

@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   nixpkgs.config = {
     allowUnfree = true;
     permittedInsecurePackages = [
@@ -8,7 +7,7 @@
   };
 
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = ["nix-command" "flakes"];
     auto-optimise-store = true;
     connect-timeout = 5;
     substituters = [
@@ -25,5 +24,4 @@
     dates = "weekly";
     options = "--delete-older-than 14d";
   };
-  
 }

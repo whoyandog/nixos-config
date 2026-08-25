@@ -1,5 +1,9 @@
-{ lib, pkgs, config, ... }:
-let
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: let
   cfg = config.local.networking.n8n;
 
   defaultEditorBaseUrl = "${cfg.protocol}://${cfg.host}:${toString cfg.port}";
@@ -20,7 +24,7 @@ in {
     };
 
     protocol = lib.mkOption {
-      type = lib.types.enum [ "http" "https" ];
+      type = lib.types.enum ["http" "https"];
       default = "http";
       description = "Protocol used by n8n for generated URLs.";
     };
@@ -63,9 +67,9 @@ in {
   config = lib.mkIf cfg.enable {
     systemd.services.n8n = {
       description = "n8n workflow automation";
-      wantedBy = [ "multi-user.target" ];
-      after = [ "network-online.target" ];
-      wants = [ "network-online.target" ];
+      wantedBy = ["multi-user.target"];
+      after = ["network-online.target"];
+      wants = ["network-online.target"];
 
       environment = lib.filterAttrs (_: value: value != null) {
         HOME = "/var/lib/n8n";
@@ -74,9 +78,15 @@ in {
         N8N_HOST = cfg.host;
         N8N_PORT = toString cfg.port;
         N8N_PROTOCOL = cfg.protocol;
-        N8N_SECURE_COOKIE = if cfg.protocol == "https" then "true" else "false";
+        N8N_SECURE_COOKIE =
+          if cfg.protocol == "https"
+          then "true"
+          else "false";
 
-        N8N_EDITOR_BASE_URL = if cfg.editorBaseUrl != null then cfg.editorBaseUrl else defaultEditorBaseUrl;
+        N8N_EDITOR_BASE_URL =
+          if cfg.editorBaseUrl != null
+          then cfg.editorBaseUrl
+          else defaultEditorBaseUrl;
         WEBHOOK_URL = cfg.webhookUrl;
 
         DB_TYPE = "sqlite";
@@ -87,18 +97,20 @@ in {
         TZ = cfg.timezone;
       };
 
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.n8n}/bin/n8n start";
-        Restart = "always";
-        RestartSec = "5s";
+      serviceConfig =
+        {
+          Type = "simple";
+          ExecStart = "${pkgs.n8n}/bin/n8n start";
+          Restart = "always";
+          RestartSec = "5s";
 
-        DynamicUser = true;
-        StateDirectory = "n8n";
-        WorkingDirectory = "/var/lib/n8n";
-      } // lib.optionalAttrs (cfg.envFile != null) {
-        EnvironmentFile = cfg.envFile;
-      };
+          DynamicUser = true;
+          StateDirectory = "n8n";
+          WorkingDirectory = "/var/lib/n8n";
+        }
+        // lib.optionalAttrs (cfg.envFile != null) {
+          EnvironmentFile = cfg.envFile;
+        };
     };
 
     networking.firewall.allowedTCPPorts = lib.optional cfg.openFirewall cfg.port;

@@ -1,9 +1,11 @@
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.services.tg-ws-proxy;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.services.tg-ws-proxy;
+in {
   options.services.tg-ws-proxy = {
     enable = lib.mkEnableOption "tg-ws-proxy MTProto WebSocket bridge for Telegram";
 
@@ -21,8 +23,8 @@ in
 
     dcIPs = lib.mkOption {
       type = lib.types.listOf lib.types.str;
-      default = [ "2:149.154.167.220" "4:149.154.167.220" ];
-      example = [ "1:149.154.175.53" "2:149.154.167.220" "3:149.154.175.100" "4:149.154.167.220" "5:91.108.56.130" ];
+      default = ["2:149.154.167.220" "4:149.154.167.220"];
+      example = ["1:149.154.175.53" "2:149.154.167.220" "3:149.154.175.100" "4:149.154.167.220" "5:91.108.56.130"];
       description = ''
         List of DC:IP mappings for Telegram data centers.
         Format: "DC_NUMBER:IP_ADDRESS"
@@ -39,9 +41,9 @@ in
   config = lib.mkIf cfg.enable {
     systemd.services.tg-ws-proxy = {
       description = "tg-ws-proxy MTProto WebSocket Bridge";
-      after = [ "network-online.target" ];
-      wants = [ "network-online.target" ];
-      wantedBy = [ "multi-user.target" ];
+      after = ["network-online.target"];
+      wants = ["network-online.target"];
+      wantedBy = ["multi-user.target"];
 
       serviceConfig = {
         Type = "simple";
@@ -79,8 +81,8 @@ in
         ProtectSystem = "strict";
         ProtectHome = true;
         CapabilityBoundingSet = "";
-        RestrictAddressFamilies = [ "AF_INET" "AF_INET6" ];
-        SystemCallFilter = [ "@system-service" ];
+        RestrictAddressFamilies = ["AF_INET" "AF_INET6"];
+        SystemCallFilter = ["@system-service"];
       };
 
       # После запуска выводим ссылку для подключения в журнал

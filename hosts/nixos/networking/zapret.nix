@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
-let
+{
+  config,
+  pkgs,
+  ...
+}: let
   fake = "${pkgs.zapret}/usr/share/zapret/files/fake";
   discordList = pkgs.writeText "zapret-discord-list" ''
     discord.com
@@ -38,8 +40,7 @@ let
     channels.nixos.org
     releases.nixos.org
   '';
-in
-{
+in {
   local.networking.zapret = {
     enable = true;
     # Стратегии подобраны blockcheck под провайдера.

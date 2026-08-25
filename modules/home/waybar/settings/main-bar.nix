@@ -7,9 +7,9 @@
   margin-left = 16;
   margin-right = 16;
 
-  modules-left = [ "niri/workspaces" "niri/window" ];
-  modules-center = [ "clock" ];
-  modules-right = [ "network" "niri/language" "pulseaudio" "tray" ];
+  modules-left = ["niri/workspaces" "niri/window"];
+  modules-center = ["clock"];
+  modules-right = ["network" "niri/language" "pulseaudio" "tray"];
 
   clock = {
     format = "{:%a %d %b  %H:%M}";
@@ -33,7 +33,7 @@
     format = "{icon} {volume}%";
     format-muted = "󰝟 Muted";
     format-icons = {
-      default = [ "󰕿" "󰖀" "󰕾" ];
+      default = ["󰕿" "󰖀" "󰕾"];
     };
   };
 }

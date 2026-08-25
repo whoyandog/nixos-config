@@ -1,10 +1,13 @@
-{ pkgs, inputs, ...}: 
 {
+  pkgs,
+  inputs,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
     kitty
     fuzzel
     wl-clipboard
-    
+
     # wallpapers
     awww
 
@@ -27,10 +30,9 @@
     # discord
     discord
 
-    # libreoffice 
+    # libreoffice
     libreoffice
   ];
 
   services.flatpak.enable = true;
 }
-

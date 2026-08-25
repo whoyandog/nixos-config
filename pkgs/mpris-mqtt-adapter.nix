@@ -1,5 +1,12 @@
-{ lib, rustPlatform, pkg-config, makeWrapper, playerctl, src, fetchCrate }:
-
+{
+  lib,
+  rustPlatform,
+  pkg-config,
+  makeWrapper,
+  playerctl,
+  src,
+  fetchCrate,
+}:
 rustPlatform.buildRustPackage {
   pname = "mpris-mqtt-adapter";
   version = "unstable";
@@ -15,7 +22,7 @@ rustPlatform.buildRustPackage {
 
   postInstall = ''
     wrapProgram "$out/bin/mpris-mqtt-adapter" \
-      --prefix PATH : ${lib.makeBinPath [ playerctl ]}
+      --prefix PATH : ${lib.makeBinPath [playerctl]}
   '';
 
   meta = with lib; {

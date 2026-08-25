@@ -1,10 +1,12 @@
-{ lib, config, ... }:
-let
-  cfg = config.services.mprisMqttAdapter;
-in
 {
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.services.mprisMqttAdapter;
+in {
   imports = [
-    (lib.mkAliasOptionModule [ "services" "mprisMqttBridge" ] [ "services" "mprisMqttAdapter" ])
+    (lib.mkAliasOptionModule ["services" "mprisMqttBridge"] ["services" "mprisMqttAdapter"])
   ];
 
   options.services.mprisMqttAdapter = {
@@ -24,7 +26,7 @@ in
 
     extraArgs = lib.mkOption {
       type = lib.types.listOf lib.types.str;
-      default = [ ];
+      default = [];
       description = "Extra arguments passed to the bridge executable.";
     };
 
@@ -36,7 +38,7 @@ in
 
     wantedBy = lib.mkOption {
       type = lib.types.listOf lib.types.str;
-      default = [ "default.target" ];
+      default = ["default.target"];
       description = "Systemd user targets that should start this service.";
     };
   };
@@ -44,12 +46,10 @@ in
   config = lib.mkIf cfg.enable (
     let
       adapterCmd =
-        if cfg.package != null then
-          lib.getExe cfg.package
-        else
-          cfg.executable;
-    in
-    {
+        if cfg.package != null
+        then lib.getExe cfg.package
+        else cfg.executable;
+    in {
       assertions = [
         {
           assertion = adapterCmd != null;
@@ -62,15 +62,15 @@ in
       systemd.user.services.mpris-mqtt-adapter = {
         Unit = {
           Description = "MPRIS to MQTT adapter";
-          After = [ "graphical-session.target" "network-online.target" ];
-          Wants = [ "network-online.target" ];
-          PartOf = [ "graphical-session.target" ];
+          After = ["graphical-session.target" "network-online.target"];
+          Wants = ["network-online.target"];
+          PartOf = ["graphical-session.target"];
         };
 
         Service =
           {
             Type = "simple";
-            ExecStart = lib.escapeShellArgs ([ adapterCmd ] ++ cfg.extraArgs);
+            ExecStart = lib.escapeShellArgs ([adapterCmd] ++ cfg.extraArgs);
             Restart = "on-failure";
             RestartSec = 3;
           }
@@ -80,7 +80,7 @@ in
 
         Install = {
           WantedBy = cfg.wantedBy;
-          Alias = [ "mpris-mqtt-bridge.service" ];
+          Alias = ["mpris-mqtt-bridge.service"];
         };
       };
     }

@@ -1,5 +1,5 @@
 # /etc/nixos/dmitry.nix
-{ ... }: {
+{...}: {
   home.username = "dmitry";
   home.homeDirectory = "/home/dmitry";
   home.stateVersion = "25.11";

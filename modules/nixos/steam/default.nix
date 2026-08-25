@@ -1,11 +1,10 @@
-{ pkgs, ... } : {
+{pkgs, ...}: {
+  services.xserver.enable = true;
+  services.xserver.excludePackages = [pkgs.xterm];
 
-    services.xserver.enable = true;
-    services.xserver.excludePackages = [ pkgs.xterm ];
+  programs.steam = {
+    enable = true;
+  };
 
-    programs.steam = {
-        enable = true;
-    };
-
-    programs.xwayland.enable = true;
+  programs.xwayland.enable = true;
 }

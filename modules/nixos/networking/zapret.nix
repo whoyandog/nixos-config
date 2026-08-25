@@ -1,12 +1,15 @@
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   cfg = config.local.networking.zapret;
   qnum = toString cfg.qnum;
-  execStart = "${pkgs.zapret}/bin/nfqws --pidfile=/run/nfqws.pid --qnum=${qnum} "
+  execStart =
+    "${pkgs.zapret}/bin/nfqws --pidfile=/run/nfqws.pid --qnum=${qnum} "
     + lib.concatStringsSep " " cfg.args;
-in
-{
+in {
   options.local.networking.zapret = {
     enable = lib.mkEnableOption "zapret DPI bypass for Discord and YouTube";
 
@@ -47,7 +50,8 @@ in
     whitelistFile = lib.mkOption {
       type = lib.types.path;
       readOnly = true;
-      default = pkgs.writeText "zapret-whitelist"
+      default =
+        pkgs.writeText "zapret-whitelist"
         (lib.concatStringsSep "\n" cfg.whitelist);
       description = "Путь к файлу whitelist в Nix store (read-only, вычисляется автоматически из whitelist).";
     };
@@ -65,15 +69,17 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    assertions = [{
-      assertion = cfg.args != [];
-      message = "local.networking.zapret: укажи args. Запусти blockcheck для определения параметров провайдера.";
-    }];
+    assertions = [
+      {
+        assertion = cfg.args != [];
+        message = "local.networking.zapret: укажи args. Запусти blockcheck для определения параметров провайдера.";
+      }
+    ];
 
     systemd.services.zapret = {
       description = "DPI bypass service";
-      wantedBy = [ "multi-user.target" ];
-      after = [ "network.target" ];
+      wantedBy = ["multi-user.target"];
+      after = ["network.target"];
       serviceConfig = {
         ExecStart = execStart;
         Type = "simple";
@@ -94,7 +100,7 @@ in
         RestrictRealtime = true;
         RestrictSUIDSGID = true;
         SystemCallArchitectures = "native";
-        AmbientCapabilities = [ "CAP_NET_ADMIN" "CAP_NET_RAW" ];
+        AmbientCapabilities = ["CAP_NET_ADMIN" "CAP_NET_RAW"];
       };
     };
 

@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   imports = [
     ./system-utils.nix
     ./hardware-utils.nix

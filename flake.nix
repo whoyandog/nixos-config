@@ -30,21 +30,26 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ...}@inputs: {
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
-      modules = [ 
-        ./hosts/nixos/default.nix 
+      specialArgs = {inherit inputs;};
+      modules = [
+        ./hosts/nixos/default.nix
         inputs.stylix.nixosModules.stylix
-        home-manager.nixosModules.home-manager 
+        home-manager.nixosModules.home-manager
         {
           nixpkgs.overlays = [
             (final: prev: {
               mpris-mqtt-adapter = final.callPackage ./pkgs/mpris-mqtt-adapter.nix {
                 src = inputs.mpris-mqtt-adapter-src;
               };
-              tg-ws-proxy = final.callPackage ./pkgs/tg-ws-proxy.nix { };
+              tg-ws-proxy = final.callPackage ./pkgs/tg-ws-proxy.nix {};
             })
           ];
 

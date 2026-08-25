@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }:
-
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 # iPhone as low-latency camera for motion capture
 #
 # Two connection modes — pick one:
@@ -30,11 +34,10 @@
 # iPhone app: "Larix Broadcaster" (App Store, free)
 #   Settings → Video: 720p, 30fps, 2000 kbps
 #   Settings → Connections → +: srt://IP:4000  latency: 20
-
 {
   # ── USB tethering support ─────────────────────────────────────────────────
   # ipheth — iPhone USB Ethernet kernel driver
-  boot.kernelModules = [ "ipheth" ];
+  boot.kernelModules = ["ipheth"];
 
   # usbmuxd — required for initial iPhone trust over USB
   services.usbmuxd = {
@@ -44,7 +47,7 @@
 
   environment.systemPackages = with pkgs; [
     ffmpeg
-    libimobiledevice   # provides idevicepair (run once: sudo idevicepair pair)
+    libimobiledevice # provides idevicepair (run once: sudo idevicepair pair)
   ];
 
   # ── Virtual camera device ─────────────────────────────────────────────────
@@ -56,12 +59,12 @@
   '';
 
   # ── Firewall ──────────────────────────────────────────────────────────────
-  networking.firewall.allowedUDPPorts = [ 4000 ];
+  networking.firewall.allowedUDPPorts = [4000];
 
   # ── UDP socket buffers for SRT ────────────────────────────────────────────
   boot.kernel.sysctl = {
-    "net.core.rmem_max"     = 134217728;
-    "net.core.wmem_max"     = 134217728;
+    "net.core.rmem_max" = 134217728;
+    "net.core.wmem_max" = 134217728;
     "net.core.rmem_default" = 33554432;
     "net.core.wmem_default" = 33554432;
   };

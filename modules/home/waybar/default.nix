@@ -1,9 +1,7 @@
-{ ... }:
-let
+{...}: let
   mainBar = import ./settings/main-bar.nix;
   dockBar = import ./settings/dock-bar.nix;
-in
-{
+in {
   programs.waybar = {
     enable = true;
     systemd.enable = true;

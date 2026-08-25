@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -7,7 +6,7 @@
     alsa.support32Bit = true;
     pulse.enable = true;
 
-    # Settings for better input 
+    # Settings for better input
 
     extraConfig.pipewire."10-clock" = {
       "context.properties" = {

@@ -35,30 +35,38 @@
     nixpkgs,
     home-manager,
     ...
-  } @ inputs: {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = {inherit inputs;};
-      modules = [
-        ./hosts/nixos/default.nix
-        inputs.stylix.nixosModules.stylix
-        home-manager.nixosModules.home-manager
-        {
-          nixpkgs.overlays = [
-            (final: prev: {
-              mpris-mqtt-adapter = final.callPackage ./pkgs/mpris-mqtt-adapter.nix {
-                src = inputs.mpris-mqtt-adapter-src;
-              };
-              tg-ws-proxy = final.callPackage ./pkgs/tg-ws-proxy.nix {};
-            })
-          ];
+  } @ inputs: let
+    mkHost = hostName:
+      nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {inherit inputs hostName;};
+        modules = [
+          ./hosts/${hostName}/default.nix
+          inputs.stylix.nixosModules.stylix
+          home-manager.nixosModules.home-manager
+          {
+            nixpkgs.overlays = [
+              (final: prev: {
+                mpris-mqtt-adapter = final.callPackage ./pkgs/mpris-mqtt-adapter.nix {
+                  src = inputs.mpris-mqtt-adapter-src;
+                };
+                tg-ws-proxy = final.callPackage ./pkgs/tg-ws-proxy.nix {};
+              })
+            ];
 
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.backupFileExtension = "backup";
-          home-manager.users.dmitry = import ./home/dmitry.nix;
-        }
-      ];
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
+            home-manager.extraSpecialArgs = {inherit inputs hostName;};
+            home-manager.users.dmitry = import ./home/dmitry.nix;
+          }
+        ];
+      };
+  in {
+    nixosConfigurations = {
+      desktop = mkHost "desktop";
+      tablet = mkHost "tablet";
+      server = mkHost "server";
     };
   };
 }

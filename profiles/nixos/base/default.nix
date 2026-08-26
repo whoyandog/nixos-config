@@ -4,10 +4,7 @@
     ./hardware-utils.nix
     ./networking.nix
     ./security.nix
-    ./audio.nix
-    ./graphics.nix
-    ./fonts.nix
-    ./peripherals.nix
-    ./printing.nix
+    ./locale.nix
+    ./time.nix
   ];
 }

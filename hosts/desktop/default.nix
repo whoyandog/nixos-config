@@ -6,15 +6,17 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./networking
-    ./time.nix
-    ./locale.nix
     ./virtualization.nix
     ./audio
     ./users
-    ./nix-settings.nix
-    ../../profiles/nixos
-    ../../modules/nixos
+    ../../profiles/nixos/base
+    ../../profiles/nixos/nix-settings.nix
+    ../../profiles/nixos/desktop.nix
+    ../../profiles/nixos/dev.nix
+    ../../profiles/nixos/gamedev.nix
   ];
+
+  networking.hostName = "desktop";
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;

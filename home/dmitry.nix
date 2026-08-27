@@ -1,5 +1,5 @@
 # /etc/nixos/dmitry.nix
-{...}: {
+{ hostName, ...}: {
   home.username = "dmitry";
   home.homeDirectory = "/home/dmitry";
   home.stateVersion = "25.11";
@@ -24,7 +24,7 @@
   stylix.targets.kde.enable = false;
 
   imports = [
-    ../profiles/home
+    ../profiles/home/${hostName}.nix
     ../modules/home
   ];
 

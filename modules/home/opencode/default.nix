@@ -19,6 +19,10 @@
             id = "anthropic/claude-sonnet-5";
             name = "Claude Sonnet 5";
           };
+          "google-gemini-3.1-pro-preview" = {
+            id = "google/gemini-3.1-pro-preview";
+            name = "Google: Gemini 3.1 Pro Preview";
+          };
         };
       };
     };

@@ -36,10 +36,10 @@
     home-manager,
     ...
   } @ inputs: let
-    mkHost = hostName:
+    mkHost = hostName: userName: 
       nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {inherit inputs hostName;};
+        specialArgs = {inherit inputs hostName userName;};
         modules = [
           ./hosts/${hostName}/default.nix
           inputs.stylix.nixosModules.stylix
@@ -57,16 +57,19 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "backup";
-            home-manager.extraSpecialArgs = {inherit inputs hostName;};
-            home-manager.users.dmitry = import ./home/dmitry.nix;
+            home-manager.extraSpecialArgs = {inherit inputs hostName userName;};
+            home-manager.users.${userName} = import ./home/user.nix;
           }
         ];
       };
   in {
-    nixosConfigurations = {
-      desktop = mkHost "desktop";
-      tablet = mkHost "tablet";
-      server = mkHost "server";
+    nixosConfigurations = let
+      userName = "dmitry";
+      mkUserHost = hostName: mkHost hostName userName;
+    in {
+      desktop = mkUserHost "desktop";
+      tablet  = mkUserHost "tablet";
+      server  = mkUserHost "server";
     };
   };
 }

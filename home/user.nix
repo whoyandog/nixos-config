@@ -1,7 +1,7 @@
-# /etc/nixos/dmitry.nix
-{ hostName, ...}: {
-  home.username = "dmitry";
-  home.homeDirectory = "/home/dmitry";
+# /etc/nixos/user.nix
+{ userName, hostName, ...}: {
+  home.username = userName;
+  home.homeDirectory = "/home/${userName}";
   home.stateVersion = "25.11";
 
   xdg.userDirs = {

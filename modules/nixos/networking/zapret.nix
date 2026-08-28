@@ -43,6 +43,11 @@ in {
         "youtube-nocookie.com"
         "youtubei.googleapis.com"
         "youtube.googleapis.com"
+        "github.com"
+        "githubusercontent.com"
+        "objects.githubusercontent.com"
+        "github-releases.githubusercontent.com"
+        "raw.githubusercontent.com"
       ];
       description = "Список доменов, для которых применяется обход. Остальной трафик не затрагивается.";
     };

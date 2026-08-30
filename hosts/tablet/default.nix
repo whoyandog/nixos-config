@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
-    ../../profiles/nixos/tablet.nix
+    ../../profiles/system/tablet.nix
   ];
-
 }

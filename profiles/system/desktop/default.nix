@@ -5,11 +5,11 @@
   ...
 }: {
   imports = [
-    ../../../modules/system/nvidia
-    ../../../modules/system/logitech
-    ../../../modules/system/steam
-    ../../../modules/system/tg-ws-proxy.nix
-    ../../../modules/system/networking/n8n.nix
+    ../../../modules/system/hardware/nvidia
+    ../../../modules/system/hardware/logitech
+    ../../../modules/system/apps/steam
+    ../../../modules/system/services/tg-ws-proxy.nix
+    ../../../modules/system/services/n8n.nix
     ../gui
     ../apps-common.nix
     ../network-bypass.nix

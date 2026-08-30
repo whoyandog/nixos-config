@@ -3,15 +3,12 @@
   pkgs,
   ...
 }: {
-  imports = [
-    ../../../modules/system/networking/n8n.nix
-    ./secrets.nix
-    ./zapret.nix
-    ./throne.nix
-  ];
-
   networking.nftables.enable = true;
   networking.networkmanager.enable = true;
+
+  # throne 
+  programs.throne.enable = true;
+  programs.throne.tunMode.enable = true;
 
   services.tg-ws-proxy.enable = true;
 

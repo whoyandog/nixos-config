@@ -5,13 +5,20 @@
   ...
 }: {
   imports = [
-    ../../modules/system/nvidia
-    ../../modules/system/logitech
-    ../../modules/system/steam
-    ../../modules/system/tg-ws-proxy.nix
-    ./gui
-    ./apps-common.nix
-    ./network-bypass.nix
+    ../../../modules/system/nvidia
+    ../../../modules/system/logitech
+    ../../../modules/system/steam
+    ../../../modules/system/tg-ws-proxy.nix
+    ../../../modules/system/networking/n8n.nix
+    ../gui
+    ../apps-common.nix
+    ../network-bypass.nix
+    ./audio.nix
+    ./networking.nix
+    ./users.nix
+    ./virtualization.nix
+    ./secrets.nix
+    ./zapret.nix
   ];
 
   # NVIDIA + Zen browser specific portal override: RemoteDesktop must go

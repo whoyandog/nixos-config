@@ -5,13 +5,9 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./networking
-    ./virtualization.nix
-    ./audio
-    ./users
     ../../profiles/system/base
+    ../../profiles/system/desktop
     ../../profiles/system/nix-settings.nix
-    ../../profiles/system/desktop.nix
     ../../profiles/system/dev.nix
     ../../profiles/system/gamedev.nix
   ];

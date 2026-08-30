@@ -5,8 +5,8 @@
     ./fonts.nix
     ./portals.nix
     ./system.nix
-    ../../../modules/nixos/login
-    ../../../modules/nixos/stylix
+    ../../../modules/system/login
+    ../../../modules/system/stylix
   ];
 
   programs.niri.enable = true;

@@ -1,6 +1,6 @@
 {...}: {
   imports = [
-    ../../modules/nixos/steam
+    ../../modules/system/steam
     ./gui
     ./apps-common.nix
     ./network-bypass.nix

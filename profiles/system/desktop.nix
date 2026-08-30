@@ -5,10 +5,10 @@
   ...
 }: {
   imports = [
-    ../../modules/nixos/nvidia
-    ../../modules/nixos/logitech
-    ../../modules/nixos/steam
-    ../../modules/nixos/tg-ws-proxy.nix
+    ../../modules/system/nvidia
+    ../../modules/system/logitech
+    ../../modules/system/steam
+    ../../modules/system/tg-ws-proxy.nix
     ./gui
     ./apps-common.nix
     ./network-bypass.nix

@@ -9,11 +9,11 @@
     ./virtualization.nix
     ./audio
     ./users
-    ../../profiles/nixos/base
-    ../../profiles/nixos/nix-settings.nix
-    ../../profiles/nixos/desktop.nix
-    ../../profiles/nixos/dev.nix
-    ../../profiles/nixos/gamedev.nix
+    ../../profiles/system/base
+    ../../profiles/system/nix-settings.nix
+    ../../profiles/system/desktop.nix
+    ../../profiles/system/dev.nix
+    ../../profiles/system/gamedev.nix
   ];
 
   networking.hostName = "desktop";

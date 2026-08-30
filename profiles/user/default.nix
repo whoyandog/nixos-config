@@ -24,8 +24,8 @@
   stylix.targets.kde.enable = false;
 
   imports = [
-    ../profiles/home/${hostName}.nix
-    ../modules/home
+    ./${hostName}.nix
+    ../../modules/user
   ];
 
   programs.home-manager.enable = true;

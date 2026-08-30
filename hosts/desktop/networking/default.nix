@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    ../../../modules/nixos/networking/n8n.nix
+    ../../../modules/system/networking/n8n.nix
     ./secrets.nix
     ./zapret.nix
     ./throne.nix

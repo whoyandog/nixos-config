@@ -58,7 +58,7 @@
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "backup";
             home-manager.extraSpecialArgs = {inherit inputs hostName userName;};
-            home-manager.users.${userName} = import ./home/user.nix;
+            home-manager.users.${userName} = import ./profiles/user/default.nix;
           }
         ];
       };

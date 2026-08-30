@@ -4,7 +4,7 @@
   # Obsidian LiveSync (CouchDB) are planned but intentionally not wired up
   # yet -- they depend on migrating data off the current Ubuntu box first.
   #
-  # See modules/nixos/networking/{mosquitto,n8n}.nix for other optional
+  # See modules/system/networking/{mosquitto,n8n}.nix for other optional
   # services that already exist in the repo but are disabled everywhere
   # for now.
 

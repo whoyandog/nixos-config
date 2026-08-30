@@ -1,9 +1,9 @@
 {pkgs, ...}: {
   # DPI bypass / proxy tooling shared between desktop and tablet.
   imports = [
-    ../../modules/nixos/networking/zapret.nix
-    ../../modules/nixos/networking/sing-box.nix
-    ../../modules/nixos/networking/proxychains.nix
+    ../../modules/system/networking/zapret.nix
+    ../../modules/system/networking/sing-box.nix
+    ../../modules/system/networking/proxychains.nix
   ];
 
   environment.systemPackages = with pkgs; [

@@ -7,6 +7,7 @@
   imports = [
     ../../../modules/system/hardware/nvidia
     ../../../modules/system/hardware/logitech
+    ../../../modules/system/hardware/printing.nix
     ../../../modules/system/apps/steam
     ../../../modules/system/services/tg-ws-proxy.nix
     ../../../modules/system/services/n8n.nix
@@ -25,16 +26,7 @@
   # through the gnome portal instead of wlr on this machine.
   xdg.portal.config.niri."org.freedesktop.impl.portal.RemoteDesktop" = lib.mkForce ["gnome"];
 
-  services.printing = {
-    enable = true;
-    drivers = [pkgs.epson-escpr];
-  };
-  hardware.sane.enable = true;
-  users.users.dmitry.extraGroups = ["scanner" "lp"];
-
   environment.systemPackages = with pkgs; [
-    simple-scan
-
     # wallpapers
     awww
 

@@ -58,7 +58,6 @@
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "backup";
             home-manager.extraSpecialArgs = {inherit inputs hostName userName;};
-            home-manager.users.${userName} = import ./profiles/user/default.nix;
           }
         ];
       };
@@ -67,7 +66,7 @@
       userName = "dmitry";
       mkUserHost = hostName: mkHost hostName userName;
     in {
-      workstation = mkUserHost "workstation";
+      pc = mkUserHost "pc";
       tablet  = mkUserHost "tablet";
       server  = mkUserHost "server";
     };

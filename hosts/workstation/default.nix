@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, hostName, ...}: {
   imports = [
     ./hardware-configuration.nix
     ../../profiles/system/base
@@ -8,7 +8,7 @@
     ../../profiles/system/gamedev.nix
   ];
 
-  networking.hostName = "desktop";
+  networking.hostName = hostName;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

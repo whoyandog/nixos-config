@@ -67,7 +67,7 @@
       userName = "dmitry";
       mkUserHost = hostName: mkHost hostName userName;
     in {
-      desktop = mkUserHost "desktop";
+      workstation = mkUserHost "workstation";
       tablet  = mkUserHost "tablet";
       server  = mkUserHost "server";
     };

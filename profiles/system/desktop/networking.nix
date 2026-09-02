@@ -4,7 +4,6 @@
   ...
 }: {
   networking.nftables.enable = true;
-  networking.networkmanager.enable = true;
 
   # throne 
   programs.throne.enable = true;

@@ -2,7 +2,7 @@
   imports = [
     ./fonts.nix
     ./portals.nix
-    ./service.nix
+    ./services.nix
     ./audio.nix
     ../../../modules/system/ui/login
     ../../../modules/system/ui/stylix

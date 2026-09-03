@@ -8,8 +8,6 @@
   # services that already exist in the repo but are disabled everywhere
   # for now.
 
-  virtualisation.docker.enable = true;
-
   services.openssh = {
     enable = true;
     settings.PasswordAuthentication = false;

@@ -23,4 +23,6 @@
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
   };
+
+  xdg.portal.config.niri."org.freedesktop.impl.portal.RemoteDesktop" = lib.mkForce ["gnome"];
 }

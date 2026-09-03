@@ -1,4 +1,4 @@
-{config, ...}: {
+{config, lib, ...}: {
   # NVIDIA settings
   services.xserver.videoDrivers = ["nvidia"];
 

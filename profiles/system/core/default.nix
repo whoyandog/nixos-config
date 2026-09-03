@@ -1,4 +1,4 @@
-{...}: {
+{config, ...}: {
   imports = [
     ./system-utils.nix
     ./hardware-utils.nix
@@ -7,4 +7,6 @@
     ./locale.nix
     ./time.nix
   ];
+
+  nixpkgs.config.allowUnfree = true;
 }

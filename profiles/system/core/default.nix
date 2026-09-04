@@ -6,7 +6,6 @@
     ./security.nix
     ./locale.nix
     ./time.nix
+    ./nix-settings.nix
   ];
-
-  nixpkgs.config.allowUnfree = true;
 }

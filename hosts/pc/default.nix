@@ -5,7 +5,10 @@
     ../../profiles/system/user-account.nix
     ../../profiles/system/networking/network-manager.nix
     ../../profiles/system/networking/nftables.nix
+    ../../profiles/system/networking/dev-ports.nix
     ../../profiles/system/hardware/nvidia.nix
+    ../../profiles/system/hardware/logitech.nix
+    ../../profiles/system/hardware/printing.nix
     ../../profiles/system/gui
     ../../profiles/system/apps/common.nix
     ../../profiles/system/apps/dev.nix
@@ -14,12 +17,6 @@
     ../../profiles/system/apps/streaming.nix
     ../../profiles/system/apps/desktop-extra.nix
   ];
-
-  home-manager.users."${userName}" = {
-    imports = [
-      ../../profiles/user/core.nix
-    ];
-  };
 
   networking.hostName = hostName;
 

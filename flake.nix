@@ -36,6 +36,11 @@
     home-manager,
     ...
   } @ inputs: let
+    hostsConfig = {
+      pc     = { userProfile = "desktop"; };
+      tablet = { userProfile = "desktop"; };
+      server = { userProfile = null; };
+    };
     mkHost = hostName: userName: 
       nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -58,6 +63,13 @@
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "backup";
             home-manager.extraSpecialArgs = {inherit inputs hostName userName;};
+            
+            home-manager.users.${userName} = nixpkgs.lib.mkIf (userProfile != null) {
+              imports = [
+                ./profiles/user/core
+                ./profiles/user/base.nix
+              ] ++ nixpkgs.lib.optional (userProfile == "desktop") ./profiles/user/desktop.nix;
+            };
           }
         ];
       };

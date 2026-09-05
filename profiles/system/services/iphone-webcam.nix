@@ -1,5 +1,5 @@
 {...}: {
     imports = [
-        ../../../modules/system/service/iphone-webcam.nix
+        ../../../modules/system/services/iphone-webcam.nix
     ];
 }

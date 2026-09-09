@@ -7,7 +7,7 @@
   hardware.sane.enable = true;
   users.users.dmitry.extraGroups = [ "scanner" "lp" ];
 
-  environment.systemPackages = [
-    pkgs.simple-scan
+  environment.systemPackages = with pkgs; [
+    simple-scan
   ];
 }

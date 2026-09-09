@@ -24,5 +24,5 @@
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
   };
 
-  xdg.portal.config.niri."org.freedesktop.impl.portal.RemoteDesktop" = ["gnome"];
+  xdg.portal.config.niri."org.freedesktop.impl.portal.RemoteDesktop" = lib.mkForce ["gnome"];
 }

@@ -10,12 +10,9 @@
     ../../profiles/system/hardware/logitech.nix
     ../../profiles/system/hardware/printing.nix
     ../../profiles/system/gui
-    ../../profiles/system/apps/common.nix
     ../../profiles/system/apps/dev.nix
-    ../../profiles/system/apps/gamedev.nix
     ../../profiles/system/apps/gaming.nix
     ../../profiles/system/apps/streaming.nix
-    ../../profiles/system/apps/desktop-extra.nix
   ];
 
   networking.hostName = hostName;

@@ -41,7 +41,9 @@
       tablet = { userProfile = "desktop"; };
       server = { userProfile = null; };
     };
-    mkHost = hostName: userName: 
+    mkHost = hostName: userName: let 
+      userProfile = hostsConfig.${hostName}.userProfile;
+    in
       nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {inherit inputs hostName userName;};
@@ -66,7 +68,7 @@
             
             home-manager.users.${userName} = nixpkgs.lib.mkIf (userProfile != null) {
               imports = [
-                ./profiles/user/core
+                ./profiles/user/core.nix
                 ./profiles/user/base.nix
               ] ++ nixpkgs.lib.optional (userProfile == "desktop") ./profiles/user/desktop.nix;
             };

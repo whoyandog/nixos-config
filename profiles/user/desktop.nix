@@ -6,7 +6,7 @@
     ../../modules/user/apps/kitty
     ../../modules/user/apps/thunar
     ../../modules/user/apps/opencode
-    ../../modules/user/apps/dbox-browser
+    ../../modules/user/apps/dbox-browser.nix
     ../../modules/user/cli/git
     ../../modules/user/cli/neovim
     ../../modules/user/desktop/niri

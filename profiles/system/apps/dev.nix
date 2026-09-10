@@ -15,7 +15,7 @@ in {
     vscodeWithDesktopIcon
     python3
 
-    # for github copilot
+    # github copilot
     bubblewrap
     socat
   ];

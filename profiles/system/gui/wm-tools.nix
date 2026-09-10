@@ -3,5 +3,6 @@
         kitty
         fuzzel
         wl-clipboard
+        thunar
     ];
 }

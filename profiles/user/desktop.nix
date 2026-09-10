@@ -14,8 +14,4 @@
     ../../modules/user/services/mpris-mqtt-adapter
     ./mpris-mqtt-adapter.nix
   ];
-
-  home.packages = with pkgs; [
-    awww
-  ];
 }

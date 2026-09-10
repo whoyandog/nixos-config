@@ -66,11 +66,12 @@
             home-manager.backupFileExtension = "backup";
             home-manager.extraSpecialArgs = {inherit inputs hostName userName;};
             
-            home-manager.users.${userName} = nixpkgs.lib.mkIf (userProfile != null) {
+            home-manager.users.${userName} = nixpkgs.lib.mkIf (userProfile == "desktop") {
               imports = [
                 ./profiles/user/core.nix
                 ./profiles/user/base.nix
-              ] ++ nixpkgs.lib.optional (userProfile == "desktop") ./profiles/user/desktop.nix;
+                ./profiles/user/desktop.nix
+              ];
             };
           }
         ];

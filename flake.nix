@@ -68,9 +68,10 @@
             
             home-manager.users.${userName} = nixpkgs.lib.mkIf (userProfile == "desktop") {
               imports = [
-                ./profiles/user/core.nix
                 ./profiles/user/base.nix
+                ./profiles/user/core.nix
                 ./profiles/user/desktop.nix
+                ./profiles/user/dev.nix
               ];
             };
           }

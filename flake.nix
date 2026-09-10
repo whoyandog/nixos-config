@@ -72,6 +72,7 @@
                 ./profiles/user/core.nix
                 ./profiles/user/desktop.nix
                 ./profiles/user/dev.nix
+                ./profiles/user/mpris-mqtt-adapter.nix
               ];
             };
           }

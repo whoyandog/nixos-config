@@ -10,6 +10,9 @@
     ../../profiles/system/networking/nftables.nix
     ../../profiles/system/networking/dev-ports.nix
 
+    # ../../profiles/system/network-bypass/zapret.nix
+    # ../../profiles/system/network-bypass/tg-ws-proxy.nix
+
     ../../profiles/system/hardware/nvidia.nix
     ../../profiles/system/hardware/logitech.nix
     ../../profiles/system/hardware/printing.nix
@@ -19,8 +22,9 @@
     ../../profiles/system/apps/creative.nix
     ../../profiles/system/apps/dev.nix
     ../../profiles/system/apps/gaming.nix
-    ../../profiles/system/apps/streaming.nix
+    ../../profiles/system/apps/media.nix
     ../../profiles/system/apps/office.nix
+    ../../profiles/system/apps/streaming.nix
   ];
 
   networking.hostName = hostName;

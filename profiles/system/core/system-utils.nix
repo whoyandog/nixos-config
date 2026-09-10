@@ -4,6 +4,5 @@
     git
     ouch
     screenfetch
-    thunar
   ];
 }

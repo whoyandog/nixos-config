@@ -9,6 +9,8 @@
     pkgs.playerctl
     pkgs.mpv
     pkgs.loupe
+    pkgs.awww
+    pkgs.xwayland-satellite
   ];
 
   xdg.mimeApps = {

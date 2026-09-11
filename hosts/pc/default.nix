@@ -13,6 +13,9 @@
     # ../../profiles/system/network-bypass/zapret.nix
     # ../../profiles/system/network-bypass/tg-ws-proxy.nix
 
+    # ../../profiles/system/virtualization/docker.nix
+    ../../profiles/system/virtualization/podman.nix
+
     ../../profiles/system/hardware/nvidia.nix
     ../../profiles/system/hardware/logitech.nix
     ../../profiles/system/hardware/printing.nix

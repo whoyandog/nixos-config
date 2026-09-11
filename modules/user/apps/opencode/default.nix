@@ -5,24 +5,19 @@
 
   xdg.configFile."opencode/opencode.jsonc".text = builtins.toJSON {
     "$schema" = "https://opencode.ai/config.json";
-    model = "polza/claude-sonnet-5";
+    model = "polza/google/gemini-3.8-flash"; 
     provider = {
       polza = {
         npm = "@ai-sdk/openai-compatible";
         name = "POLZA AI";
         options = {
-          apiKey = "{env:POLZA_API_KEY}";
           baseURL = "https://polza.ai/api/v1";
+          apiKey = "{env:POLZA_API_KEY}"; 
         };
         models = {
-          "claude-sonnet-5" = {
-            id = "anthropic/claude-sonnet-5";
-            name = "Claude Sonnet 5";
-          };
-          "google-gemini-3.1-pro-preview" = {
-            id = "google/gemini-3.1-pro-preview";
-            name = "Google: Gemini 3.1 Pro Preview";
-          };
+          "google/gemini-3.8-flash" = { name = "Gemini 3.8 Flash"; };
+          "google/gemini-3.1-pro-preview" = { name = "Gemini 3.1 Pro Preview"; };
+          "claude-sonnet-5" = { name = "Claude Sonnet 5"; };
         };
       };
     };

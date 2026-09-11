@@ -28,6 +28,8 @@
     ../../profiles/system/apps/media.nix
     ../../profiles/system/apps/office.nix
     ../../profiles/system/apps/streaming.nix
+
+
   ];
 
   networking.hostName = hostName;

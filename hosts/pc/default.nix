@@ -11,7 +11,7 @@
     ../../profiles/system/networking/dev-ports.nix
 
     # ../../profiles/system/network-bypass/zapret.nix
-    # ../../profiles/system/network-bypass/tg-ws-proxy.nix
+    ../../profiles/system/network-bypass/tg-ws-proxy.nix
 
     # ../../profiles/system/virtualization/docker.nix
     ../../profiles/system/virtualization/podman.nix

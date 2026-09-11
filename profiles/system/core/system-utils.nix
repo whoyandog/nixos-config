@@ -3,6 +3,6 @@
     neovim
     git
     ouch
-    screenfetch
+    fastfetch
   ];
 }

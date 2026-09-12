@@ -10,7 +10,7 @@
     ../../modules/user/cli/git
     ../../modules/user/cli/neovim
     ../../modules/user/desktop/niri
-    ../../modules/user/desktop/waybar
+    ../../modules/user/desktop/noctalia
     ../../modules/user/services/mpris-mqtt-adapter
     ./mpris-mqtt-adapter.nix
   ];

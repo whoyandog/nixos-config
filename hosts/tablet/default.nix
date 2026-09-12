@@ -9,8 +9,17 @@
 
     ../../profiles/system/networking/network-manager.nix
     ../../profiles/system/networking/nftables.nix
+    ../../profiles/system/networking/dev-ports.nix
+
+    ../../profiles/system/network-bypass/zapret.nix
+    ../../profiles/system/network-bypass/tg-ws-proxy.nix
+
+    ../../profiles/system/virtualization/podman.nix
 
     ../../profiles/system/apps/browsers.nix
+    ../../profiles/system/apps/comminications.nix
+    ../../profiles/system/apps/dev.nix
+    ../../profiles/system/apps/media.nix
   ];
 
   home-manager.users.${userName} = {
@@ -18,6 +27,7 @@
       ../../profiles/user/base.nix
       ../../profiles/user/core.nix
       ../../profiles/user/desktop.nix
+      ../../profiles/user/dev.nix
     ];
   };
 

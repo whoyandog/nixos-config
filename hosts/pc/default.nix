@@ -1,6 +1,7 @@
 {pkgs, userName, hostName, ...}: {
   imports = [
     ./hardware-configuration.nix
+    
     ../../profiles/system/core
     ../../profiles/system/gui
 

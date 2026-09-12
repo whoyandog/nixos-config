@@ -41,6 +41,10 @@
     releases.nixos.org
   '';
 in {
+  imports = [
+    ../../../modules/system/network-bypass/zapret.nix
+  ];
+
   local.networking.zapret = {
     enable = true;
     # Стратегии подобраны blockcheck под провайдера.

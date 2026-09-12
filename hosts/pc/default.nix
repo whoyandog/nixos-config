@@ -13,7 +13,6 @@
     ../../profiles/system/network-bypass/zapret.nix
     ../../profiles/system/network-bypass/tg-ws-proxy.nix
 
-    # ../../profiles/system/virtualization/docker.nix
     ../../profiles/system/virtualization/podman.nix
 
     ../../profiles/system/hardware/nvidia.nix
@@ -28,9 +27,18 @@
     ../../profiles/system/apps/media.nix
     ../../profiles/system/apps/office.nix
     ../../profiles/system/apps/streaming.nix
-
-
   ];
+
+  home-manager.users.${userName} = {
+    imports = [
+      ../../profiles/user/base.nix
+      ../../profiles/user/core.nix
+      ../../profiles/user/desktop.nix
+      ../../profiles/user/dev.nix
+      ../../profiles/user/gaming.nix
+      ../../profiles/user/mpris-mqtt-adapter.nix 
+    ];
+  };
 
   networking.hostName = hostName;
 

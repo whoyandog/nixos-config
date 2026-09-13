@@ -11,6 +11,8 @@
     ../../modules/user/cli/neovim
     ../../modules/user/desktop/niri
     ../../modules/user/desktop/noctalia
+    ../../modules/user/desktop/hyprlock
+    ../../modules/user/desktop/hypridle
     ../../modules/user/services/mpris-mqtt-adapter
     ./mpris-mqtt-adapter.nix
   ];

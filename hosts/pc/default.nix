@@ -26,6 +26,7 @@
     ../../profiles/system/apps/dev.nix
     ../../profiles/system/apps/gaming.nix
     ../../profiles/system/apps/media.nix
+    ../../profiles/system/apps/notes.nix
     ../../profiles/system/apps/office.nix
     ../../profiles/system/apps/streaming.nix
   ];

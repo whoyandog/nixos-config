@@ -20,6 +20,7 @@
     ../../profiles/system/apps/comminications.nix
     ../../profiles/system/apps/dev.nix
     ../../profiles/system/apps/media.nix
+    ../../profiles/system/apps/notes.nix
   ];
 
   home-manager.users.${userName} = {

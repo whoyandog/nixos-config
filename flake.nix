@@ -72,8 +72,8 @@
       mkUserHost = hostName: mkHost hostName userName;
     in {
       pc = mkUserHost "pc";
-      tablet  = mkUserHost "tablet";
-      server  = mkUserHost "server";
+      tablet = mkUserHost "tablet";
+      server = mkUserHost "server";
     };
   };
 }

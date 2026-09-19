@@ -1,3 +1,3 @@
-{...}:{
+{...}: {
   services.flatpack.enable = true;
 }

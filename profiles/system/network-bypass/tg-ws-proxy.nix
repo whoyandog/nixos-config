@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   imports = [
     ../../../modules/system/network-bypass/tg-ws-proxy.nix
   ];

@@ -1,4 +1,8 @@
-{pkgs, userName, ...}: {
+{
+  pkgs,
+  userName,
+  ...
+}: {
   local.networking.singBox.configPath = "/home/${userName}/.config/secrets/sing-box.json";
 
   imports = [

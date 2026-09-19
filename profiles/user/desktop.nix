@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   imports = [
     ../../modules/user/apps/cursor
     ../../modules/user/apps/kitty

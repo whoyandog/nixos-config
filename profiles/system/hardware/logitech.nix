@@ -1,5 +1,5 @@
 {...}: {
-    imports = [
-        ../../../modules/system/hardware/logitech
-    ];
+  imports = [
+    ../../../modules/system/hardware/logitech
+  ];
 }

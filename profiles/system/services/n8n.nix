@@ -1,5 +1,4 @@
-{ userName, ... }: 
-{
+{userName, ...}: {
   imports = [
     ../../../modules/system/services/n8n.nix
   ];

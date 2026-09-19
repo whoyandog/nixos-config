@@ -1,7 +1,12 @@
-{pkgs, userName, hostName, ...}: {
+{
+  pkgs,
+  userName,
+  hostName,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
-    
+
     ../../profiles/system/core
     ../../profiles/system/gui
 
@@ -19,7 +24,7 @@
     ../../profiles/system/hardware/nvidia.nix
     ../../profiles/system/hardware/logitech.nix
     ../../profiles/system/hardware/printing.nix
-    
+
     ../../profiles/system/apps/browsers.nix
     ../../profiles/system/apps/comminications.nix
     ../../profiles/system/apps/creative.nix
@@ -38,7 +43,7 @@
       ../../profiles/user/desktop.nix
       ../../profiles/user/dev.nix
       ../../profiles/user/gaming.nix
-      ../../profiles/user/mpris-mqtt-adapter.nix 
+      ../../profiles/user/mpris-mqtt-adapter.nix
     ];
   };
 

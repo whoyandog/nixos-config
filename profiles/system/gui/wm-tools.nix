@@ -1,8 +1,8 @@
 {pkgs, ...}: {
-    environment.systemPackages = with pkgs; [
-        kitty
-        fuzzel
-        wl-clipboard
-        thunar
-    ];
+  environment.systemPackages = with pkgs; [
+    kitty
+    fuzzel
+    wl-clipboard
+    thunar
+  ];
 }

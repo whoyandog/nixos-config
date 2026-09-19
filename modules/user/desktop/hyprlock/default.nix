@@ -1,7 +1,10 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   stylix.targets.hyprlock.enable = false;
-  
+
   programs.hyprlock = {
     enable = true;
     settings = {
@@ -9,7 +12,7 @@
         disable_loading_bar = true;
         hide_cursor = true;
       };
-      
+
       background = [
         {
           path = "screenshot";
@@ -28,7 +31,7 @@
           font_family = "JetBrains Mono";
           placeholder_text = "<i>Password...</i>";
           hide_input = false;
-          
+
           outline_thickness = 2;
           outer_color = "rgb(180, 190, 254)";
           inner_color = "rgb(30, 30, 46)";

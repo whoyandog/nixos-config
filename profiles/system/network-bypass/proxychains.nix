@@ -1,10 +1,9 @@
-{ pkgs, ... }: 
-{ 
-    imports = [
-        ../../../modules/system/networking/sing-box.nix
-    ];
+{pkgs, ...}: {
+  imports = [
+    ../../../modules/system/networking/sing-box.nix
+  ];
 
-    environment.systemPackages = with pkgs; [
-        proxychains-ng
-    ];
+  environment.systemPackages = with pkgs; [
+    proxychains-ng
+  ];
 }

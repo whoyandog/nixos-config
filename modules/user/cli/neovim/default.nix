@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -45,5 +45,6 @@
     fd
     nil
     lua-language-server
+    prettierd
   ];
 }

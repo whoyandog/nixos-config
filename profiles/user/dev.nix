@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   imports = [
     ./vscode.nix
   ];
@@ -12,6 +12,6 @@
     rust-analyzer
     podman-compose
     opencode
-    gemini-cli
+    antigravity-cli
   ];
 }

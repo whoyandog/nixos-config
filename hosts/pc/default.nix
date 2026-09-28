@@ -29,6 +29,7 @@
     ../../profiles/system/apps/comminications.nix
     ../../profiles/system/apps/creative.nix
     ../../profiles/system/apps/dev.nix
+    ../../profiles/system/apps/flatpak.nix
     ../../profiles/system/apps/gaming.nix
     ../../profiles/system/apps/media.nix
     ../../profiles/system/apps/notes.nix

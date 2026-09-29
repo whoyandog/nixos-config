@@ -30,7 +30,7 @@
 
   home-manager.users.${userName} = {
     imports = [
-      ../../profiles/user/base.nix
+      ../../profiles/user/bypass.nix
       ../../profiles/user/core.nix
       ../../profiles/user/desktop.nix
       ../../profiles/user/dev.nix

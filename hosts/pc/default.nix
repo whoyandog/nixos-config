@@ -16,6 +16,7 @@
     ../../profiles/system/networking/nftables.nix
     ../../profiles/system/networking/dev-ports.nix
 
+    ../../profiles/system/network-bypass/amneziawg.nix
     ../../profiles/system/network-bypass/zapret.nix
     ../../profiles/system/network-bypass/tg-ws-proxy.nix
 
@@ -39,7 +40,7 @@
 
   home-manager.users.${userName} = {
     imports = [
-      ../../profiles/user/base.nix
+      ../../profiles/user/bypass.nix
       ../../profiles/user/core.nix
       ../../profiles/user/desktop.nix
       ../../profiles/user/dev.nix

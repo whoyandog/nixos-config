@@ -4,5 +4,6 @@
     git
     ouch
     fastfetch
+    tree
   ];
 }

@@ -1,0 +1,33 @@
+{...}: {
+  imports = [
+    ../../../modules/system/networking/dns.nix
+  ];
+
+  local.networking.splitDns = {
+    enable = true;
+
+    servers = {
+      "108.160.138.51" = [
+        "deepmind.com"
+        "deepmind.google"
+        "geller-pa.googleapis.com"
+        "generativelanguage.googleapis.com"
+        "proactivebackend-pa.googleapis.com"
+        "full:ai.google.dev"
+        "full:alkalicore-pa.clients6.google.com"
+        "full:alkalimakersuite-pa.clients6.google.com"
+        "full:webchannel-alkalimakersuite-pa.clients6.google.com"
+        "generativeai.google"
+        "makersuite.google.com"
+        "aistudio.google.com"
+        "bard.google.com"
+        "gemini.google"
+        "gemini.google.com"
+        "notebooklm.google"
+        "notebooklm.google.com"
+        "jules.google"
+        "jules.google.com"
+      ];
+    };
+  };
+}

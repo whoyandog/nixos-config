@@ -15,6 +15,7 @@
     ../../profiles/system/networking/network-manager.nix
     ../../profiles/system/networking/nftables.nix
     ../../profiles/system/networking/dev-ports.nix
+    ../../profiles/system/networking/dns.nix
 
     ../../profiles/system/network-bypass/amneziawg.nix
     ../../profiles/system/network-bypass/zapret.nix

@@ -7,7 +7,7 @@
     enable = true;
 
     servers = {
-      "108.160.138.51" = [
+      "139.180.133.239" = [
         "deepmind.com"
         "deepmind.google"
         "geller-pa.googleapis.com"

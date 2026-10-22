@@ -21,7 +21,7 @@
       blink-cmp
 
       # Syntax tree parsing.
-      nvim-treesitter
+      nvim-treesitter.withAllGrammars
 
       # Quality of life.
       gitsigns-nvim

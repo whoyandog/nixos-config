@@ -32,6 +32,8 @@ require("blink.cmp").setup({
 local capabilities = require("blink.cmp").get_lsp_capabilities()
 vim.lsp.config("nil_ls", { capabilities = capabilities })
 vim.lsp.enable("nil_ls")
+vim.lsp.config("marksman", { capabilities = capabilities })
+vim.lsp.enable("marksman")
 
 vim.lsp.config("lua_ls", {
     capabilities = capabilities,
@@ -78,6 +80,7 @@ require("conform").setup({
         typescriptreact = { "prettierd" },
         json = { "prettierd" },
         css = { "prettierd" },
+        markdown = { "prettierd" },
     },
     format_on_save = function(_)
         return { timeout_ms = 1000, lsp_fallback = true }
@@ -85,4 +88,4 @@ require("conform").setup({
 })
 
 require("crates").setup({})
-
+require("render-markdown").setup({})

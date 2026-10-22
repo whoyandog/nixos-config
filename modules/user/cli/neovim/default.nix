@@ -31,6 +31,7 @@
       tokyonight-nvim
       conform-nvim
       crates-nvim
+      render-markdown-nvim
     ];
 
     initLua = ''
@@ -46,5 +47,6 @@
     nil
     lua-language-server
     prettierd
+    marksman
   ];
 }

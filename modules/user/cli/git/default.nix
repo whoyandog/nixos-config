@@ -1,11 +1,15 @@
 {...}: {
   programs.git = {
     enable = true;
-    userName = "whoyandog";
-    userEmail = "dimka360@mail.ru";
     settings = {
-      user.useConfigOnly = true;
-      init.defaultBranch = "main";
+      user = {
+        name = "whoyandog";
+        email = "dimka360@mail.ru";
+        useConfigOnly = true;
+      };
+      init = {
+        defaultBranch = "main";
+      };
     };
   };
 }

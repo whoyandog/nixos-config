@@ -37,6 +37,8 @@
     ../../profiles/system/apps/notes.nix
     ../../profiles/system/apps/office.nix
     ../../profiles/system/apps/streaming.nix
+
+    #../../profiles/system/services/iphone-webcam.nix
   ];
 
   home-manager.users.${userName} = {
@@ -45,6 +47,7 @@
       ../../profiles/user/core.nix
       ../../profiles/user/desktop.nix
       ../../profiles/user/dev.nix
+      ../../profiles/user/easyeffects.nix
       ../../profiles/user/gaming.nix
       ../../profiles/user/mpris-mqtt-adapter.nix
     ];

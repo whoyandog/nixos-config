@@ -2,52 +2,48 @@
   lib,
   python3,
   fetchFromGitHub,
-}: let
-  python = python3.withPackages (ps:
-    with ps; [
-      cryptography
-      psutil
-      pyperclip
-    ]);
-in
-  python3.pkgs.buildPythonApplication {
-    pname = "tg-ws-proxy";
-    version = "1.7.3";
-    pyproject = true;
+}:
+python3.pkgs.buildPythonApplication {
+  pname = "tg-ws-proxy";
+  version = "1.11.4";
+  pyproject = true;
 
-    src = fetchFromGitHub {
-      owner = "Flowseal";
-      repo = "tg-ws-proxy";
-      rev = "v1.7.3";
-      hash = "sha256-b9Dmh41PEC3LZDhaSILUDrLApDgP0IiKXn//cvLfm9o=";
-    };
+  src = fetchFromGitHub {
+    owner = "Flowseal";
+    repo = "tg-ws-proxy";
+    rev = "v1.11.4";
+    hash = "sha256-N7k8D2tnO4iVFq5lXjhdKpYMR+gDsCkKZLTpACpJStY=";
+  };
 
-    build-system = with python3.pkgs; [hatchling];
+  build-system = with python3.pkgs; [hatchling];
 
-    dependencies = with python3.pkgs; [
-      cryptography
-      psutil
-      pyperclip
-    ];
+  dependencies = with python3.pkgs; [
+    certifi
+    cryptography
+    h2
+    httpx
+    psutil
+    pyperclip
+  ];
 
-    doCheck = false;
+  doCheck = false;
 
-    pythonRelaxDeps = true;
-    pythonRemoveTestsDirHook = true;
+  pythonRelaxDeps = true;
+  pythonRemoveTestsDirHook = true;
 
-    dontCheckRuntimeDeps = true;
+  dontCheckRuntimeDeps = true;
 
-    postInstall = ''
-      rm -f $out/bin/tg-ws-proxy-tray-win
-      rm -f $out/bin/tg-ws-proxy-tray-macos
-      rm -f $out/bin/tg-ws-proxy-tray-linux
-    '';
+  postInstall = ''
+    rm -f $out/bin/tg-ws-proxy-tray-win
+    rm -f $out/bin/tg-ws-proxy-tray-macos
+    rm -f $out/bin/tg-ws-proxy-tray-linux
+  '';
 
-    meta = {
-      description = "Local MTProto proxy server for Telegram via WebSocket";
-      homepage = "https://github.com/Flowseal/tg-ws-proxy";
-      license = lib.licenses.mit;
-      platforms = lib.platforms.linux;
-      mainProgram = "tg-ws-proxy";
-    };
-  }
+  meta = {
+    description = "Local MTProto proxy server for Telegram via WebSocket";
+    homepage = "https://github.com/Flowseal/tg-ws-proxy";
+    license = lib.licenses.mit;
+    platforms = lib.platforms.linux;
+    mainProgram = "tg-ws-proxy";
+  };
+}

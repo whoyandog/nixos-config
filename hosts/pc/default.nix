@@ -3,7 +3,8 @@
   userName,
   hostName,
   ...
-}: {
+}:
+{
   imports = [
     ./hardware-configuration.nix
 
@@ -48,7 +49,6 @@
       ../../profiles/user/desktop.nix
       ../../profiles/user/dev.nix
       ../../profiles/user/easyeffects.nix
-      ../../profiles/user/gaming.nix
       ../../profiles/user/mpris-mqtt-adapter.nix
     ];
   };

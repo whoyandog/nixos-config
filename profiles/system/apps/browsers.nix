@@ -2,9 +2,10 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   environment.systemPackages = with pkgs; [
-    qutebrowser
+    # qutebrowser
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

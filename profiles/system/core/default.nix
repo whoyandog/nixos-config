@@ -1,11 +1,12 @@
 {config, ...}: {
   imports = [
-    ./system-utils.nix
     ./hardware-utils.nix
-    ./networking.nix
-    ./security.nix
     ./locale.nix
-    ./time.nix
+    ./memory.nix
+    ./networking.nix
     ./nix-settings.nix
+    ./security.nix
+    ./system-utils.nix
+    ./time.nix
   ];
 }

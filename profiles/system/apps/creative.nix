@@ -3,6 +3,6 @@
     krita
     godot_4
     libresprite
-    blender
+    (blender.override { cudaSupport = true; })
   ];
 }
